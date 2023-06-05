@@ -32,7 +32,7 @@ class ItemsRepository {
   }
 
   // 更新
-  Future<int> updateItems(int id, String itemName, int itemPrice) {
+  Future<int> updateItem(int id, String itemName, int itemPrice) {
     return (database.update(database.items)
           ..where(
             (tbl) => tbl.itemId.equals(id),
@@ -54,7 +54,7 @@ class ItemsRepository {
   }
 
   // 削除
-  Future<int> deleteItems(int id) async {
+  Future<int> deleteItem(int id) async {
     return await (database.delete(database.items)
           ..where(
             (tbl) => tbl.itemId.equals(id),

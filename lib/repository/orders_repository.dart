@@ -37,7 +37,7 @@ class OrdersRepository {
   }
 
   // 更新
-  Future<int> updateOrders(
+  Future<int> updateOrder(
       int id, int orderNum, DateTime orderTime, int itemId) {
     return (database.update(database.orders)
           ..where(
@@ -61,7 +61,7 @@ class OrdersRepository {
   }
 
   // 削除
-  Future<int> deleteOrders(int id) async {
+  Future<int> deleteOrder(int id) async {
     return await (database.delete(database.orders)
           ..where(
             (tbl) => tbl.id.equals(id),
