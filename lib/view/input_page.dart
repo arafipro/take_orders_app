@@ -51,10 +51,56 @@ class InputPage extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  child: const Text("仮登録"),
+                  child: const Text(
+                    "仮登録",
+                  ),
                   onPressed: () {},
                 ),
               ),
+              SizedBox(
+                width: double.infinity,
+                child: DataTable(
+                  columns: const [
+                    DataColumn(
+                      label: Text(
+                        "商品名",
+                      ),
+                    ),
+                    DataColumn(
+                      label: Text(
+                        "価格",
+                      ),
+                    ),
+                    DataColumn(
+                      label: Text(
+                        "",
+                      ),
+                    ),
+                  ],
+                  rows: const [
+                    DataRow(
+                      cells: <DataCell>[
+                        DataCell(
+                          Text(
+                            "itemName1",
+                          ),
+                        ),
+                        DataCell(
+                          Text(
+                            "itemPrice1",
+                          ),
+                        ),
+                        DataCell(
+                          IconButton(
+                            icon: Icon(Icons.delete),
+                            onPressed: null,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
