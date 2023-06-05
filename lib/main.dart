@@ -1,25 +1,27 @@
-import "package:flutter/material.dart";
 import "package:drift/drift.dart";
+import "package:flutter/material.dart";
 import "package:take_orders_app/db_utils/order_db.dart";
-import "package:take_orders_app/repository/items_repository.dart";
+import "package:take_orders_app/repository/orders_repository.dart";
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final repoitem = ItemsRepository();
-  await repoitem.addItems([
-    ItemsCompanion.insert(
-      itemName: "grape",
-      itemPrice: const Value(100),
+  final repoitem = OrdersRepository();
+  await repoitem.addOrders([
+    OrdersCompanion.insert(
+      orderNum: const Value(1),
+      orderTime: DateTime.now(),
+      itemId: const Value(1),
     ),
-    ItemsCompanion.insert(
-      itemName: "banana",
-      itemPrice: const Value(200),
+    OrdersCompanion.insert(
+      orderNum: const Value(2),
+      orderTime: DateTime.now(),
+      itemId: const Value(2),
     ),
   ]);
 
   // Simple select:
-  final allItems = await database.select(database.items).get();
+  final allItems = await repoitem.getAllOrders();
   debugPrint("Items in database: $allItems");
   runApp(const MainApp());
 }

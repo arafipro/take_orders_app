@@ -5,5 +5,5 @@ class Orders extends Table {
   IntColumn get id => integer().autoIncrement()();
   IntColumn get orderNum => integer().nullable()();
   DateTimeColumn get orderTime => dateTime()();
-  IntColumn get items => integer().nullable().references(Items, #itemId)();
+  IntColumn get itemId => integer().nullable().references(Items, #itemId)();
 }

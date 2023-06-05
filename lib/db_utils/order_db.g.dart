@@ -240,16 +240,16 @@ class $OrdersTable extends Orders with TableInfo<$OrdersTable, Order> {
   late final GeneratedColumn<DateTime> orderTime = GeneratedColumn<DateTime>(
       'order_time', aliasedName, false,
       type: DriftSqlType.dateTime, requiredDuringInsert: true);
-  static const VerificationMeta _itemsMeta = const VerificationMeta('items');
+  static const VerificationMeta _itemIdMeta = const VerificationMeta('itemId');
   @override
-  late final GeneratedColumn<int> items = GeneratedColumn<int>(
-      'items', aliasedName, true,
+  late final GeneratedColumn<int> itemId = GeneratedColumn<int>(
+      'item_id', aliasedName, true,
       type: DriftSqlType.int,
       requiredDuringInsert: false,
       defaultConstraints:
           GeneratedColumn.constraintIsAlways('REFERENCES items (item_id)'));
   @override
-  List<GeneratedColumn> get $columns => [id, orderNum, orderTime, items];
+  List<GeneratedColumn> get $columns => [id, orderNum, orderTime, itemId];
   @override
   String get aliasedName => _alias ?? 'orders';
   @override
@@ -272,9 +272,9 @@ class $OrdersTable extends Orders with TableInfo<$OrdersTable, Order> {
     } else if (isInserting) {
       context.missing(_orderTimeMeta);
     }
-    if (data.containsKey('items')) {
-      context.handle(
-          _itemsMeta, items.isAcceptableOrUnknown(data['items']!, _itemsMeta));
+    if (data.containsKey('item_id')) {
+      context.handle(_itemIdMeta,
+          itemId.isAcceptableOrUnknown(data['item_id']!, _itemIdMeta));
     }
     return context;
   }
@@ -291,8 +291,8 @@ class $OrdersTable extends Orders with TableInfo<$OrdersTable, Order> {
           .read(DriftSqlType.int, data['${effectivePrefix}order_num']),
       orderTime: attachedDatabase.typeMapping
           .read(DriftSqlType.dateTime, data['${effectivePrefix}order_time'])!,
-      items: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}items']),
+      itemId: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}item_id']),
     );
   }
 
@@ -306,9 +306,9 @@ class Order extends DataClass implements Insertable<Order> {
   final int id;
   final int? orderNum;
   final DateTime orderTime;
-  final int? items;
+  final int? itemId;
   const Order(
-      {required this.id, this.orderNum, required this.orderTime, this.items});
+      {required this.id, this.orderNum, required this.orderTime, this.itemId});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -317,8 +317,8 @@ class Order extends DataClass implements Insertable<Order> {
       map['order_num'] = Variable<int>(orderNum);
     }
     map['order_time'] = Variable<DateTime>(orderTime);
-    if (!nullToAbsent || items != null) {
-      map['items'] = Variable<int>(items);
+    if (!nullToAbsent || itemId != null) {
+      map['item_id'] = Variable<int>(itemId);
     }
     return map;
   }
@@ -330,8 +330,8 @@ class Order extends DataClass implements Insertable<Order> {
           ? const Value.absent()
           : Value(orderNum),
       orderTime: Value(orderTime),
-      items:
-          items == null && nullToAbsent ? const Value.absent() : Value(items),
+      itemId:
+          itemId == null && nullToAbsent ? const Value.absent() : Value(itemId),
     );
   }
 
@@ -342,7 +342,7 @@ class Order extends DataClass implements Insertable<Order> {
       id: serializer.fromJson<int>(json['id']),
       orderNum: serializer.fromJson<int?>(json['orderNum']),
       orderTime: serializer.fromJson<DateTime>(json['orderTime']),
-      items: serializer.fromJson<int?>(json['items']),
+      itemId: serializer.fromJson<int?>(json['itemId']),
     );
   }
   @override
@@ -352,7 +352,7 @@ class Order extends DataClass implements Insertable<Order> {
       'id': serializer.toJson<int>(id),
       'orderNum': serializer.toJson<int?>(orderNum),
       'orderTime': serializer.toJson<DateTime>(orderTime),
-      'items': serializer.toJson<int?>(items),
+      'itemId': serializer.toJson<int?>(itemId),
     };
   }
 
@@ -360,12 +360,12 @@ class Order extends DataClass implements Insertable<Order> {
           {int? id,
           Value<int?> orderNum = const Value.absent(),
           DateTime? orderTime,
-          Value<int?> items = const Value.absent()}) =>
+          Value<int?> itemId = const Value.absent()}) =>
       Order(
         id: id ?? this.id,
         orderNum: orderNum.present ? orderNum.value : this.orderNum,
         orderTime: orderTime ?? this.orderTime,
-        items: items.present ? items.value : this.items,
+        itemId: itemId.present ? itemId.value : this.itemId,
       );
   @override
   String toString() {
@@ -373,13 +373,13 @@ class Order extends DataClass implements Insertable<Order> {
           ..write('id: $id, ')
           ..write('orderNum: $orderNum, ')
           ..write('orderTime: $orderTime, ')
-          ..write('items: $items')
+          ..write('itemId: $itemId')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, orderNum, orderTime, items);
+  int get hashCode => Object.hash(id, orderNum, orderTime, itemId);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -387,37 +387,37 @@ class Order extends DataClass implements Insertable<Order> {
           other.id == this.id &&
           other.orderNum == this.orderNum &&
           other.orderTime == this.orderTime &&
-          other.items == this.items);
+          other.itemId == this.itemId);
 }
 
 class OrdersCompanion extends UpdateCompanion<Order> {
   final Value<int> id;
   final Value<int?> orderNum;
   final Value<DateTime> orderTime;
-  final Value<int?> items;
+  final Value<int?> itemId;
   const OrdersCompanion({
     this.id = const Value.absent(),
     this.orderNum = const Value.absent(),
     this.orderTime = const Value.absent(),
-    this.items = const Value.absent(),
+    this.itemId = const Value.absent(),
   });
   OrdersCompanion.insert({
     this.id = const Value.absent(),
     this.orderNum = const Value.absent(),
     required DateTime orderTime,
-    this.items = const Value.absent(),
+    this.itemId = const Value.absent(),
   }) : orderTime = Value(orderTime);
   static Insertable<Order> custom({
     Expression<int>? id,
     Expression<int>? orderNum,
     Expression<DateTime>? orderTime,
-    Expression<int>? items,
+    Expression<int>? itemId,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (orderNum != null) 'order_num': orderNum,
       if (orderTime != null) 'order_time': orderTime,
-      if (items != null) 'items': items,
+      if (itemId != null) 'item_id': itemId,
     });
   }
 
@@ -425,12 +425,12 @@ class OrdersCompanion extends UpdateCompanion<Order> {
       {Value<int>? id,
       Value<int?>? orderNum,
       Value<DateTime>? orderTime,
-      Value<int?>? items}) {
+      Value<int?>? itemId}) {
     return OrdersCompanion(
       id: id ?? this.id,
       orderNum: orderNum ?? this.orderNum,
       orderTime: orderTime ?? this.orderTime,
-      items: items ?? this.items,
+      itemId: itemId ?? this.itemId,
     );
   }
 
@@ -446,8 +446,8 @@ class OrdersCompanion extends UpdateCompanion<Order> {
     if (orderTime.present) {
       map['order_time'] = Variable<DateTime>(orderTime.value);
     }
-    if (items.present) {
-      map['items'] = Variable<int>(items.value);
+    if (itemId.present) {
+      map['item_id'] = Variable<int>(itemId.value);
     }
     return map;
   }
@@ -458,7 +458,7 @@ class OrdersCompanion extends UpdateCompanion<Order> {
           ..write('id: $id, ')
           ..write('orderNum: $orderNum, ')
           ..write('orderTime: $orderTime, ')
-          ..write('items: $items')
+          ..write('itemId: $itemId')
           ..write(')'))
         .toString();
   }

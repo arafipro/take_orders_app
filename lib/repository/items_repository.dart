@@ -15,9 +15,8 @@ class ItemsRepository {
   // 一件登録
   Future<void> addItem(String itemName, int itemPrice) async {
     // Simple insert:
-    await database
-        .into(database.items)
-        .insert(ItemsCompanion(itemName: Value(itemName), itemPrice: Value(itemPrice)));
+    await database.into(database.items).insert(
+        ItemsCompanion(itemName: Value(itemName), itemPrice: Value(itemPrice)));
   }
 
   Future<void> addItemsCompanion(ItemsCompanion item) async {
@@ -34,7 +33,10 @@ class ItemsRepository {
 
   // 更新
   Future<int> updateItems(int id, String itemName, int itemPrice) {
-    return (database.update(database.items)..where((tbl) => tbl.itemId.equals(id)))
+    return (database.update(database.items)
+          ..where(
+            (tbl) => tbl.itemId.equals(id),
+          ))
         .write(
       ItemsCompanion(
         itemName: Value(itemName),
@@ -44,14 +46,19 @@ class ItemsRepository {
   }
 
   Future<int> updateItemsCompanion(int id, ItemsCompanion item) {
-    return (database.update(database.items)..where((tbl) => tbl.itemId.equals(id)))
+    return (database.update(database.items)
+          ..where(
+            (tbl) => tbl.itemId.equals(id),
+          ))
         .write(item);
   }
 
   // 削除
   Future<int> deleteItems(int id) async {
     return await (database.delete(database.items)
-          ..where((tbl) => tbl.itemId.equals(id)))
+          ..where(
+            (tbl) => tbl.itemId.equals(id),
+          ))
         .go();
   }
 }
