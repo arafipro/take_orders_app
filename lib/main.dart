@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:drift/drift.dart";
-import "package:take_orders_app/order_db.dart";
+import "package:take_orders_app/db_utils/order_db.dart";
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

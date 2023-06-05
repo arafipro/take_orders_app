@@ -4,21 +4,10 @@ import "package:drift/drift.dart";
 import "package:drift/native.dart";
 import "package:path_provider/path_provider.dart";
 import "package:path/path.dart" as p;
+import "package:take_orders_app/models/items.dart";
+import "package:take_orders_app/models/orders.dart";
 
 part "order_db.g.dart";
-
-class Orders extends Table {
-  IntColumn get id => integer().autoIncrement()();
-  IntColumn get orderNum => integer().nullable()();
-  DateTimeColumn get orderTime => dateTime()();
-  IntColumn get items => integer().nullable().references(Items, #itemId)();
-}
-
-class Items extends Table {
-  IntColumn get itemId => integer().autoIncrement()();
-  TextColumn get itemName => text()();
-  IntColumn get itemPrice => integer().nullable()();
-}
 
 @DriftDatabase(tables: [Orders, Items])
 class OrderDatabase extends _$OrderDatabase {
