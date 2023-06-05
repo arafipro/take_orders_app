@@ -1,26 +1,22 @@
 import "package:flutter/material.dart";
 import "package:drift/drift.dart";
 import "package:take_orders_app/db_utils/order_db.dart";
+import "package:take_orders_app/repository/items_repository.dart";
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final database = OrderDatabase();
 
-  // Simple insert:
-  // Future<void> insertMultipleEntries() async {
-  await database.batch((batch) {
-    batch.insertAll(database.items, [
-      ItemsCompanion.insert(
-        itemName: "apple",
-        itemPrice: const Value(100),
-      ),
-      ItemsCompanion.insert(
-        itemName: "banana",
-        itemPrice: const Value(200),
-      ),
-    ]);
-  });
-  // }
+  final repoitem = ItemsRepository();
+  await repoitem.addItems([
+    ItemsCompanion.insert(
+      itemName: "grape",
+      itemPrice: const Value(100),
+    ),
+    ItemsCompanion.insert(
+      itemName: "banana",
+      itemPrice: const Value(200),
+    ),
+  ]);
 
   // Simple select:
   final allItems = await database.select(database.items).get();
