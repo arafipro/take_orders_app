@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:take_orders_app/components/square_button.dart";
+import "package:take_orders_app/db_utils/select_items.dart";
 
 class ItemSearchPage extends StatelessWidget {
   const ItemSearchPage({super.key});
@@ -26,17 +27,67 @@ class ItemSearchPage extends StatelessWidget {
                   mainAxisSpacing: 10,
                   crossAxisCount: 3,
                   children: <Widget>[
-                    const SquareButton(text: "あ"),
-                    const SquareButton(text: "か"),
-                    const SquareButton(text: "さ"),
-                    const SquareButton(text: "た"),
-                    const SquareButton(text: "な"),
-                    const SquareButton(text: "は"),
-                    const SquareButton(text: "ま"),
-                    const SquareButton(text: "や"),
-                    const SquareButton(text: "ら"),
+                    SquareButton(
+                      text: "あ",
+                      onPressed: () async {
+                        await gojyuonItem(0);
+                      },
+                    ),
+                    SquareButton(
+                      text: "か",
+                      onPressed: () async {
+                        await gojyuonItem(1);
+                      },
+                    ),
+                    SquareButton(
+                      text: "さ",
+                      onPressed: () async {
+                        await gojyuonItem(2);
+                      },
+                    ),
+                    SquareButton(
+                      text: "た",
+                      onPressed: () async {
+                        await gojyuonItem(3);
+                      },
+                    ),
+                    SquareButton(
+                      text: "な",
+                      onPressed: () async {
+                        await gojyuonItem(4);
+                      },
+                    ),
+                    SquareButton(
+                      text: "は",
+                      onPressed: () async {
+                        await gojyuonItem(5);
+                      },
+                    ),
+                    SquareButton(
+                      text: "ま",
+                      onPressed: () async {
+                        await gojyuonItem(6);
+                      },
+                    ),
+                    SquareButton(
+                      text: "や",
+                      onPressed: () async {
+                        await gojyuonItem(7);
+                      },
+                    ),
+                    SquareButton(
+                      text: "ら",
+                      onPressed: () async {
+                        await gojyuonItem(8);
+                      },
+                    ),
                     Container(),
-                    const SquareButton(text: "わ"),
+                    SquareButton(
+                      text: "わ",
+                      onPressed: () async {
+                        await gojyuonItem(9);
+                      },
+                    ),
                     Container()
                   ],
                 ),

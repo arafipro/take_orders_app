@@ -57,6 +57,9 @@ const dummyItems = [
   ItemsCompanion(itemName: Value("ワッフル"), itemPrice: Value(350)),
   ItemsCompanion(itemName: Value("やきそば"), itemPrice: Value(700)),
   ItemsCompanion(itemName: Value("やきとり"), itemPrice: Value(350)),
+  ItemsCompanion(itemName: Value("ミートパイ"), itemPrice: Value(350)),
+  ItemsCompanion(itemName: Value("メロンパン"), itemPrice: Value(200)),
+  ItemsCompanion(itemName: Value("モダン焼き"), itemPrice: Value(450)),
 ];
 
 // 商品データがない場合、ダミー商品データを登録
