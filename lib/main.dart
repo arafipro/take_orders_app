@@ -1,8 +1,11 @@
 import "package:flutter/material.dart";
+import "package:take_orders_app/db_utils/dummy_items.dart";
 import "package:take_orders_app/view/input_page.dart";
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // 商品データがない場合、ダミー商品データを登録
+  await dummyItem();
   runApp(const MainApp());
 }
 

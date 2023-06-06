@@ -59,7 +59,7 @@ class InputPage extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   child: const Text(
-                    "仮登録",
+                    "登録",
                   ),
                   onPressed: () async {
                     await itemRepo.addItem(
@@ -94,20 +94,14 @@ class InputPage extends StatelessWidget {
                               ),
                             ),
                             DataColumn(
-                              label: SizedBox(
-                                width: 50,
-                                child: Text(
-                                  "価格",
-                                  textAlign: TextAlign.end,
-                                ),
+                              label: Text(
+                                "価格",
+                                textAlign: TextAlign.end,
                               ),
                             ),
                             DataColumn(
-                              label: SizedBox(
-                                width: 10,
-                                child: Text(
-                                  "",
-                                ),
+                              label: Text(
+                                "",
                               ),
                             ),
                           ],
@@ -121,28 +115,21 @@ class InputPage extends StatelessWidget {
                                   ),
                                 ),
                                 DataCell(
-                                  SizedBox(
-                                    width: 50,
-                                    child: Text(
-                                      snapshot.data![index].itemPrice
-                                          .toString(),
-                                      textAlign: TextAlign.end,
-                                    ),
+                                  Text(
+                                    "${snapshot.data![index].itemPrice}",
+                                    textAlign: TextAlign.end,
                                   ),
                                 ),
                                 DataCell(
-                                  SizedBox(
-                                    width: 10,
-                                    child: IconButton(
-                                      icon: Icon(
-                                        Icons.delete,
-                                        color: Colors.red.shade600,
-                                      ),
-                                      onPressed: () async {
-                                        await itemRepo.deleteItem(
-                                            snapshot.data![index].itemId);
-                                      },
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.delete,
+                                      color: Colors.red.shade600,
                                     ),
+                                    onPressed: () async {
+                                      await itemRepo.deleteItem(
+                                          snapshot.data![index].itemId);
+                                    },
                                   ),
                                 ),
                               ],
