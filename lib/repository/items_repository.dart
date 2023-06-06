@@ -4,6 +4,7 @@ import "package:take_orders_app/db_utils/order_db.dart";
 final database = OrderDatabase();
 
 class ItemsRepository {
+  // 全検索
   Stream<List<Item>> watchAllItems() {
     return (database.select(database.items)).watch();
   }
@@ -60,5 +61,39 @@ class ItemsRepository {
             (tbl) => tbl.itemId.equals(id),
           ))
         .go();
+  }
+
+  // 商品の頭文字が「あかさたなはまら」の時に検索で使用
+  Future<List<Item>> gojyuonItem5(List<String> itemNames) async {
+    return await (database.select(database.items)
+          ..where(
+            (tbl) =>
+                tbl.itemName.like("${itemNames[0]}%") |
+                tbl.itemName.like("${itemNames[1]}%") |
+                tbl.itemName.like("${itemNames[2]}%") |
+                tbl.itemName.like("${itemNames[3]}%") |
+                tbl.itemName.like("${itemNames[4]}%") |
+                tbl.itemName.like("${itemNames[5]}%") |
+                tbl.itemName.like("${itemNames[6]}%") |
+                tbl.itemName.like("${itemNames[7]}%") |
+                tbl.itemName.like("${itemNames[8]}%") |
+                tbl.itemName.like("${itemNames[9]}%"),
+          ))
+        .get();
+  }
+
+  // 商品の頭文字が「やわ」の時に検索で使用
+  Future<List<Item>> gojyuonItem3(List<String> itemNames) async {
+    return await (database.select(database.items)
+          ..where(
+            (tbl) =>
+                tbl.itemName.like("${itemNames[0]}%") |
+                tbl.itemName.like("${itemNames[1]}%") |
+                tbl.itemName.like("${itemNames[2]}%") |
+                tbl.itemName.like("${itemNames[3]}%") |
+                tbl.itemName.like("${itemNames[4]}%") |
+                tbl.itemName.like("${itemNames[5]}%"),
+          ))
+        .get();
   }
 }

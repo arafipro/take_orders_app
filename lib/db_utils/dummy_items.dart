@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:take_orders_app/db_utils/order_db.dart";
 import "package:take_orders_app/repository/items_repository.dart";
 
+// ダミー商品データ
 const dummyItems = [
   ItemsCompanion(itemName: Value("ハンバーガー"), itemPrice: Value(500)),
   ItemsCompanion(itemName: Value("タコス"), itemPrice: Value(400)),
@@ -54,6 +55,8 @@ const dummyItems = [
   ItemsCompanion(itemName: Value("スムージー"), itemPrice: Value(500)),
   ItemsCompanion(itemName: Value("フィッシュタコス"), itemPrice: Value(700)),
   ItemsCompanion(itemName: Value("ワッフル"), itemPrice: Value(350)),
+  ItemsCompanion(itemName: Value("やきそば"), itemPrice: Value(700)),
+  ItemsCompanion(itemName: Value("やきとり"), itemPrice: Value(350)),
 ];
 
 // 商品データがない場合、ダミー商品データを登録
