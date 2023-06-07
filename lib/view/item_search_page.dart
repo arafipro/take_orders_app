@@ -14,7 +14,7 @@ class ItemSearchPage extends StatelessWidget {
           child: Column(
             children: [
               const Text(
-                "Order Page",
+                "Order Select Page",
                 style: TextStyle(
                   fontSize: 30,
                 ),

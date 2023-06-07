@@ -1,7 +1,13 @@
 import "package:flutter/material.dart";
+import "package:take_orders_app/db_utils/order_db.dart";
 
 class OrderPage extends StatelessWidget {
-  const OrderPage({super.key});
+  final List<Item> searchData;
+
+  const OrderPage({
+    super.key,
+    required this.searchData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,17 +31,7 @@ class OrderPage extends StatelessWidget {
                   mainAxisSpacing: 10,
                   crossAxisCount: 3,
                   children: <Widget>[
-                    // const SquareButton(text: "あ"),
-                    // const SquareButton(text: "か"),
-                    // const SquareButton(text: "さ"),
-                    // const SquareButton(text: "た"),
-                    // const SquareButton(text: "な"),
-                    // const SquareButton(text: "は"),
-                    // const SquareButton(text: "ま"),
-                    // const SquareButton(text: "や"),
-                    // const SquareButton(text: "ら"),
-                    // Container(),
-                    // const SquareButton(text: "わ"),
+                    Container(),
                     Container()
                   ],
                 ),
