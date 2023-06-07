@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:take_orders_app/db_utils/dummy_items.dart";
-import "package:take_orders_app/view/item_search_page.dart";
+import "package:take_orders_app/pages/item_search_page.dart";
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

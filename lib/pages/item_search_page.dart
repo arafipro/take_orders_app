@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:take_orders_app/components/square_button.dart";
 import "package:take_orders_app/db_utils/select_items.dart";
-import "package:take_orders_app/view/order_page.dart";
+import "package:take_orders_app/pages/order_page.dart";
 
 class ItemSearchPage extends StatelessWidget {
   const ItemSearchPage({super.key});
