@@ -69,7 +69,7 @@ class ItemsRepository {
     return await (database.select(database.items)
           ..where(
             (tbl) => tbl.itemName.regexp(
-              "^(${gojyuonInitial[0]}|${gojyuonInitial[1]}|${gojyuonInitial[2]}|${gojyuonInitial[3]}|${gojyuonInitial[4]}|${gojyuonInitial[5]}|${gojyuonInitial[6]}% |${gojyuonInitial[7]}% |${gojyuonInitial[8]}% |${gojyuonInitial[9]}%).+",
+              "^(${gojyuonInitial[0]}|${gojyuonInitial[1]}|${gojyuonInitial[2]}|${gojyuonInitial[3]}|${gojyuonInitial[4]}|${gojyuonInitial[5]}|${gojyuonInitial[6]}|${gojyuonInitial[7]}|${gojyuonInitial[8]}|${gojyuonInitial[9]}).+",
             ),
           ))
         .get();

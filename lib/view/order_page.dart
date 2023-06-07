@@ -12,7 +12,7 @@ class OrderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false, // 戻るボタンの動作を無効化する
+      onWillPop: () async => true, // 戻るボタンの動作を無効化する
       child: Scaffold(
         body: SafeArea(
           child: Column(
@@ -24,16 +24,20 @@ class OrderPage extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: GridView.count(
+                child: GridView.builder(
                   primary: true,
                   padding: const EdgeInsets.all(10),
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  crossAxisCount: 3,
-                  children: <Widget>[
-                    Container(),
-                    Container()
-                  ],
+                  itemCount: searchData.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Column(
+                      children: [
+                        Text(searchData[index].itemName),
+                        Text(searchData[index].itemPrice.toString()),
+                      ],
+                    );
+                  },
                 ),
               ),
             ],

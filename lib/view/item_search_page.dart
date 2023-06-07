@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:take_orders_app/components/square_button.dart";
 import "package:take_orders_app/db_utils/select_items.dart";
+import "package:take_orders_app/view/order_page.dart";
 
 class ItemSearchPage extends StatelessWidget {
   const ItemSearchPage({super.key});
@@ -29,63 +30,143 @@ class ItemSearchPage extends StatelessWidget {
                   children: <Widget>[
                     SquareButton(
                       text: "あ",
-                      onPressed: () async {
-                        await gojyuonItem(0);
+                      onPressed: () {
+                        gojyuonItem(0).then((searchItem) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  OrderPage(searchData: searchItem),
+                            ),
+                          );
+                        });
                       },
                     ),
                     SquareButton(
                       text: "か",
-                      onPressed: () async {
-                        await gojyuonItem(1);
+                      onPressed: () {
+                        gojyuonItem(1).then((searchItem) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  OrderPage(searchData: searchItem),
+                            ),
+                          );
+                        });
                       },
                     ),
                     SquareButton(
                       text: "さ",
-                      onPressed: () async {
-                        await gojyuonItem(2);
+                      onPressed: () {
+                        gojyuonItem(2).then((searchItem) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  OrderPage(searchData: searchItem),
+                            ),
+                          );
+                        });
                       },
                     ),
                     SquareButton(
                       text: "た",
-                      onPressed: () async {
-                        await gojyuonItem(3);
+                      onPressed: () {
+                        gojyuonItem(3).then((searchItem) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  OrderPage(searchData: searchItem),
+                            ),
+                          );
+                        });
                       },
                     ),
                     SquareButton(
                       text: "な",
-                      onPressed: () async {
-                        await gojyuonItem(4);
+                      onPressed: () {
+                        gojyuonItem(4).then((searchItem) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  OrderPage(searchData: searchItem),
+                            ),
+                          );
+                        });
                       },
                     ),
                     SquareButton(
                       text: "は",
-                      onPressed: () async {
-                        await gojyuonItem(5);
+                      onPressed: () {
+                        gojyuonItem(5).then((searchItem) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  OrderPage(searchData: searchItem),
+                            ),
+                          );
+                        });
                       },
                     ),
                     SquareButton(
                       text: "ま",
-                      onPressed: () async {
-                        await gojyuonItem(6);
+                      onPressed: () {
+                        gojyuonItem(6).then((searchItem) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  OrderPage(searchData: searchItem),
+                            ),
+                          );
+                        });
                       },
                     ),
                     SquareButton(
                       text: "や",
-                      onPressed: () async {
-                        await gojyuonItem(7);
+                      onPressed: () {
+                        gojyuonItem(7).then((searchItem) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  OrderPage(searchData: searchItem),
+                            ),
+                          );
+                        });
                       },
                     ),
                     SquareButton(
                       text: "ら",
-                      onPressed: () async {
-                        await gojyuonItem(8);
+                      onPressed: () {
+                        gojyuonItem(8).then((searchItem) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  OrderPage(searchData: searchItem),
+                            ),
+                          );
+                        });
                       },
                     ),
                     Container(),
                     SquareButton(
                       text: "わ",
-                      onPressed: () async {
-                        await gojyuonItem(9);
+                      onPressed: () {
+                        gojyuonItem(9).then((searchItem) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  OrderPage(searchData: searchItem),
+                            ),
+                          );
+                        });
                       },
                     ),
                     Container()
