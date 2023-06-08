@@ -1,10 +1,10 @@
 import "package:flutter/material.dart";
 
-class SquareButton extends StatelessWidget {
+class InitialSquareButton extends StatelessWidget {
   final String text;
   final dynamic onPressed;
 
-  const SquareButton({
+  const InitialSquareButton({
     super.key,
     required this.text,
     required this.onPressed,
@@ -14,7 +14,7 @@ class SquareButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        // backgroundColor: Colors.teal[100],
+        backgroundColor: Colors.teal[50],
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8), // 四角形の角丸半径を指定
         ),
@@ -25,7 +25,7 @@ class SquareButton extends StatelessWidget {
         style: const TextStyle(
           fontSize: 60,
         ),
-      )
+      ),
     );
   }
 }
