@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:take_orders_app/components/item_text_card.dart";
 import "package:take_orders_app/db_utils/order_db.dart";
 
 class OrderPage extends StatelessWidget {
@@ -29,13 +30,21 @@ class OrderPage extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                   itemCount: searchData.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3),
+                    childAspectRatio: 2.0,
+                    mainAxisSpacing: 10.0,
+                    crossAxisSpacing: 10.0,
+                    crossAxisCount: 2,
+                  ),
                   itemBuilder: (BuildContext context, int index) {
-                    return Column(
-                      children: [
-                        Text(searchData[index].itemName),
-                        Text(searchData[index].itemPrice.toString()),
-                      ],
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4.0),
+                      child: ItemTextCard(
+                        itemName: searchData[index].itemName,
+                        itemPrice: searchData[index].itemPrice!,
+                        onTap: () => {
+                          debugPrint(searchData[index].itemName),
+                        },
+                      ),
                     );
                   },
                 ),
@@ -68,9 +77,7 @@ class OrderPage extends StatelessWidget {
         bottomNavigationBar: BottomAppBar(
           child: Container(
             alignment: Alignment.centerLeft,
-            child: const Text(
-              "終了するときは長押ししてください",
-            ),
+            child: const Text("終了するときは長押ししてください"),
           ),
         ),
       ),

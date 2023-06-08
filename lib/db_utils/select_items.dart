@@ -28,14 +28,14 @@ Future<List<Item>> gojyuonItem(int i) async {
   else if (i == 7 || i == 9) {
     // 3文字
     final gojyuonItems = await itemRepo.gojyuonInitial3(gojyuon[i]);
-    debugPrint("gojyuonItems: $gojyuonItems");
+    // debugPrint("gojyuonItems: $gojyuonItems");
     return gojyuonItems;
   }
   // iが7か9以外の時
   else {
     // 5文字
     final gojyuonItems = await itemRepo.gojyuonInitial5(gojyuon[i]);
-    debugPrint("gojyuonItems: $gojyuonItems");
+    // debugPrint("gojyuonItems: $gojyuonItems");
     return gojyuonItems;
   }
 }
