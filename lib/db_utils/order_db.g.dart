@@ -21,8 +21,8 @@ class $ItemsTable extends Items with TableInfo<$ItemsTable, Item> {
       const VerificationMeta('itemName');
   @override
   late final GeneratedColumn<String> itemName = GeneratedColumn<String>(
-      'item_name', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+      'item_name', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
   static const VerificationMeta _itemPriceMeta =
       const VerificationMeta('itemPrice');
   @override
@@ -47,8 +47,6 @@ class $ItemsTable extends Items with TableInfo<$ItemsTable, Item> {
     if (data.containsKey('item_name')) {
       context.handle(_itemNameMeta,
           itemName.isAcceptableOrUnknown(data['item_name']!, _itemNameMeta));
-    } else if (isInserting) {
-      context.missing(_itemNameMeta);
     }
     if (data.containsKey('item_price')) {
       context.handle(_itemPriceMeta,
@@ -66,7 +64,7 @@ class $ItemsTable extends Items with TableInfo<$ItemsTable, Item> {
       itemId: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}item_id'])!,
       itemName: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}item_name'])!,
+          .read(DriftSqlType.string, data['${effectivePrefix}item_name']),
       itemPrice: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}item_price']),
     );
@@ -80,14 +78,16 @@ class $ItemsTable extends Items with TableInfo<$ItemsTable, Item> {
 
 class Item extends DataClass implements Insertable<Item> {
   final int itemId;
-  final String itemName;
+  final String? itemName;
   final int? itemPrice;
-  const Item({required this.itemId, required this.itemName, this.itemPrice});
+  const Item({required this.itemId, this.itemName, this.itemPrice});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['item_id'] = Variable<int>(itemId);
-    map['item_name'] = Variable<String>(itemName);
+    if (!nullToAbsent || itemName != null) {
+      map['item_name'] = Variable<String>(itemName);
+    }
     if (!nullToAbsent || itemPrice != null) {
       map['item_price'] = Variable<int>(itemPrice);
     }
@@ -97,7 +97,9 @@ class Item extends DataClass implements Insertable<Item> {
   ItemsCompanion toCompanion(bool nullToAbsent) {
     return ItemsCompanion(
       itemId: Value(itemId),
-      itemName: Value(itemName),
+      itemName: itemName == null && nullToAbsent
+          ? const Value.absent()
+          : Value(itemName),
       itemPrice: itemPrice == null && nullToAbsent
           ? const Value.absent()
           : Value(itemPrice),
@@ -109,7 +111,7 @@ class Item extends DataClass implements Insertable<Item> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return Item(
       itemId: serializer.fromJson<int>(json['itemId']),
-      itemName: serializer.fromJson<String>(json['itemName']),
+      itemName: serializer.fromJson<String?>(json['itemName']),
       itemPrice: serializer.fromJson<int?>(json['itemPrice']),
     );
   }
@@ -118,18 +120,18 @@ class Item extends DataClass implements Insertable<Item> {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'itemId': serializer.toJson<int>(itemId),
-      'itemName': serializer.toJson<String>(itemName),
+      'itemName': serializer.toJson<String?>(itemName),
       'itemPrice': serializer.toJson<int?>(itemPrice),
     };
   }
 
   Item copyWith(
           {int? itemId,
-          String? itemName,
+          Value<String?> itemName = const Value.absent(),
           Value<int?> itemPrice = const Value.absent()}) =>
       Item(
         itemId: itemId ?? this.itemId,
-        itemName: itemName ?? this.itemName,
+        itemName: itemName.present ? itemName.value : this.itemName,
         itemPrice: itemPrice.present ? itemPrice.value : this.itemPrice,
       );
   @override
@@ -155,7 +157,7 @@ class Item extends DataClass implements Insertable<Item> {
 
 class ItemsCompanion extends UpdateCompanion<Item> {
   final Value<int> itemId;
-  final Value<String> itemName;
+  final Value<String?> itemName;
   final Value<int?> itemPrice;
   const ItemsCompanion({
     this.itemId = const Value.absent(),
@@ -164,9 +166,9 @@ class ItemsCompanion extends UpdateCompanion<Item> {
   });
   ItemsCompanion.insert({
     this.itemId = const Value.absent(),
-    required String itemName,
+    this.itemName = const Value.absent(),
     this.itemPrice = const Value.absent(),
-  }) : itemName = Value(itemName);
+  });
   static Insertable<Item> custom({
     Expression<int>? itemId,
     Expression<String>? itemName,
@@ -180,7 +182,7 @@ class ItemsCompanion extends UpdateCompanion<Item> {
   }
 
   ItemsCompanion copyWith(
-      {Value<int>? itemId, Value<String>? itemName, Value<int?>? itemPrice}) {
+      {Value<int>? itemId, Value<String?>? itemName, Value<int?>? itemPrice}) {
     return ItemsCompanion(
       itemId: itemId ?? this.itemId,
       itemName: itemName ?? this.itemName,

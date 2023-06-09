@@ -2,15 +2,15 @@ import "package:flutter/material.dart";
 
 class ItemImageCard extends StatelessWidget {
   final String itemName;
-  final int? itemPrice;
-  final String? itemImage;
+  final int itemPrice;
+  final String itemImage;
   final dynamic onTap;
 
   const ItemImageCard({
     super.key,
     required this.itemName,
-    this.itemPrice,
-    this.itemImage,
+    required this.itemPrice,
+    required this.itemImage,
     required this.onTap,
   });
 

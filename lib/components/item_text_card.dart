@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 
 class ItemTextCard extends StatelessWidget {
   final String itemName;
-  final int? itemPrice;
+  final int itemPrice;
   final dynamic onTap;
 
   const ItemTextCard({

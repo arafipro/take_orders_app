@@ -7,6 +7,7 @@ class InputPage extends StatelessWidget {
   final itemRepo = ItemsRepository();
   final itemNameController = TextEditingController();
   final itemPriceController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -16,60 +17,89 @@ class InputPage extends StatelessWidget {
           padding: const EdgeInsets.all(4.0),
           child: Column(
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: SizedBox(
+              Form(
+                key: _formKey,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 2.0),
+                          child: TextFormField(
+                            controller: itemNameController,
+                            keyboardType: TextInputType.text,
+                            maxLength: 50,
+                            decoration: InputDecoration(
+                              hintText: "商品名",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                            ),
+                            onChanged: (text) {
+                              itemNameController.text = text;
+                            },
+                            // value!.isEmptyで未入力を警告
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "商品名を入力してください";
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 120,
                       child: Padding(
-                        padding: const EdgeInsets.only(right: 2.0),
+                        padding: const EdgeInsets.only(left: 2.0),
                         child: TextFormField(
-                          controller: itemNameController,
-                          keyboardType: TextInputType.text,
-                          maxLength: 50,
+                          controller: itemPriceController,
+                          keyboardType: TextInputType.number,
+                          maxLength: 5,
                           decoration: InputDecoration(
-                            hintText: "商品名",
+                            hintText: "価格",
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                           ),
+                          onChanged: (text) {
+                            itemPriceController.text = text;
+                          },
+                          // value!.isEmptyで未入力を警告
+                          // !RegExp(r"^\d+$").hasMatch(value)で数字以外を警告
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "未入力";
+                            } else if (!RegExp(r"^\d+$").hasMatch(value)) {
+                              return "数字を入力";
+                            } else {
+                              return null;
+                            }
+                          },
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 80,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 2.0),
-                      child: TextFormField(
-                        controller: itemPriceController,
-                        keyboardType: TextInputType.number,
-                        maxLength: 5,
-                        decoration: InputDecoration(
-                          hintText: "価格",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      await itemRepo.addItem(
+                        itemNameController.text,
+                        int.parse(itemPriceController.text),
+                      );
+                      // 保存した後に入力を空欄に
+                      itemNameController.text = "";
+                      itemPriceController.text = "";
+                    }
+                  },
                   child: const Text(
                     "登録",
                   ),
-                  onPressed: () async {
-                    await itemRepo.addItem(
-                      itemNameController.text,
-                      int.parse(itemPriceController.text),
-                    );
-                    // 保存した後に入力を空欄に
-                    itemNameController.text = "";
-                    itemPriceController.text = "";
-                  },
                 ),
               ),
               Expanded(
@@ -111,7 +141,7 @@ class InputPage extends StatelessWidget {
                               cells: <DataCell>[
                                 DataCell(
                                   Text(
-                                    snapshot.data![index].itemName,
+                                    "${snapshot.data![index].itemName}",
                                   ),
                                 ),
                                 DataCell(
@@ -128,7 +158,8 @@ class InputPage extends StatelessWidget {
                                     ),
                                     onPressed: () async {
                                       await itemRepo.deleteItem(
-                                          snapshot.data![index].itemId);
+                                        snapshot.data![index].itemId,
+                                      );
                                     },
                                   ),
                                 ),
