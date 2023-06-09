@@ -19,40 +19,36 @@ class InputPage extends StatelessWidget {
             children: [
               Form(
                 key: _formKey,
-                child: Row(
+                child: Column(
                   children: [
-                    Expanded(
-                      child: SizedBox(
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 2.0),
-                          child: TextFormField(
-                            controller: itemNameController,
-                            keyboardType: TextInputType.text,
-                            maxLength: 50,
-                            decoration: InputDecoration(
-                              hintText: "商品名",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
-                            ),
-                            onChanged: (text) {
-                              itemNameController.text = text;
-                            },
-                            // value!.isEmptyで未入力を警告
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "商品名を入力してください";
-                              }
-                              return null;
-                            },
+                    Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: TextFormField(
+                        controller: itemNameController,
+                        keyboardType: TextInputType.text,
+                        maxLength: 20,
+                        decoration: InputDecoration(
+                          hintText: "商品名",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.0),
                           ),
                         ),
+                        onChanged: (text) {
+                          itemNameController.text = text;
+                        },
+                        // value!.isEmptyで未入力を警告
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "商品名を入力してください";
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     SizedBox(
-                      width: 120,
+                      // height: 70,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 2.0),
+                        padding: const EdgeInsets.all(2.0),
                         child: TextFormField(
                           controller: itemPriceController,
                           keyboardType: TextInputType.number,
@@ -70,9 +66,9 @@ class InputPage extends StatelessWidget {
                           // !RegExp(r"^\d+$").hasMatch(value)で数字以外を警告
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "未入力";
+                              return "価格を入力してください";
                             } else if (!RegExp(r"^\d+$").hasMatch(value)) {
-                              return "数字を入力";
+                              return "数字を入力してください";
                             } else {
                               return null;
                             }
