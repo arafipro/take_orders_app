@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:take_orders_app/components/item_text_card.dart";
+import "package:take_orders_app/components/item_order_dialog.dart";
 import "package:take_orders_app/db_utils/order_db.dart";
 import "package:take_orders_app/pages/top_page.dart";
 
@@ -14,7 +15,8 @@ class OrderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => true, // 戻るボタンの動作を無効化する
+      // MEMO 戻るボタンの動作を無効化する
+      onWillPop: () async => true,
       child: Scaffold(
         body: SafeArea(
           child: Column(
@@ -43,7 +45,15 @@ class OrderPage extends StatelessWidget {
                         itemName: "${searchData[index].itemName}",
                         itemPrice: searchData[index].itemPrice!,
                         onTap: () => {
-                          debugPrint(searchData[index].itemName),
+                          showDialog<void>(
+                            context: context,
+                            builder: (_) {
+                              return ItemOrderDialog(
+                                title: "${searchData[index].itemName}",
+                                buttonText: "OK",
+                              );
+                            },
+                          )
                         },
                       ),
                     );
