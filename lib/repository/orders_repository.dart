@@ -4,6 +4,7 @@ import "package:take_orders_app/db_utils/order_db.dart";
 final database = OrderDatabase();
 
 class OrdersRepository {
+  // MEMO 全検索
   Stream<List<Order>> watchAllOrders() {
     return (database.select(database.orders)).watch();
   }
@@ -12,31 +13,29 @@ class OrdersRepository {
     return await database.select(database.orders).get();
   }
 
-  // 一件登録
+  // MEMO 一件登録
   Future<void> addOrder(int orderNum, DateTime orderTime, int itemId) async {
-    // Simple insert:
     await database.into(database.orders).insert(
           OrdersCompanion(
             orderNum: Value(orderNum),
             orderTime: Value(orderTime),
-            itemId: Value(itemId),
+            item: Value(itemId),
           ),
         );
   }
 
   Future<void> addOrdersCompanion(OrdersCompanion order) async {
-    // Simple insert:
     await database.into(database.orders).insert(order);
   }
 
-  // 複数登録
+  // MEMO 複数登録
   Future<void> addOrders(List<OrdersCompanion> orders) async {
     await database.batch((batch) {
       batch.insertAll(database.orders, orders);
     });
   }
 
-  // 更新
+  // MEMO 更新
   Future<int> updateOrder(
       int id, int orderNum, DateTime orderTime, int itemId) {
     return (database.update(database.orders)
@@ -47,7 +46,7 @@ class OrdersRepository {
       OrdersCompanion(
         orderNum: Value(orderNum),
         orderTime: Value(orderTime),
-        itemId: Value(itemId),
+        item: Value(itemId),
       ),
     );
   }
@@ -60,7 +59,7 @@ class OrdersRepository {
         .write(order);
   }
 
-  // 削除
+  // MEMO 削除
   Future<int> deleteOrder(int id) async {
     return await (database.delete(database.orders)
           ..where(

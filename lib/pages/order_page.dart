@@ -42,7 +42,7 @@ class OrderPage extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 4.0),
                       child: ItemTextCard(
-                        itemName: "${searchData[index].itemName}",
+                        itemName: searchData[index].itemName!,
                         itemPrice: searchData[index].itemPrice!,
                         onTap: () => {
                           showDialog<void>(

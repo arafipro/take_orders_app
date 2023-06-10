@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:take_orders_app/db_utils/order_db.dart";
 import "package:take_orders_app/repository/items_repository.dart";
 
-// 五十音順配列（ひらがな、カタカナ併用）
+// MEMO 五十音順配列（ひらがな、カタカナ併用）
 const gojyuon = [
   ["あ", "い", "う", "え", "お", "ア", "イ", "ウ", "エ", "オ"], // 0
   ["か", "き", "く", "け", "こ", "カ", "キ", "ク", "ケ", "コ"], // 1
@@ -16,24 +16,24 @@ const gojyuon = [
   ["わ", "を", "ん", "ワ", "ヲ", "ン"] // 9
 ];
 
-// 五十音順で検索
-// iは0から9まで
+// MEMO 五十音順で検索
+// MEMO iは0から9まで
 Future<List<Item>> gojyuonItem(int i) async {
   final itemRepo = ItemsRepository();
   if (i < 0) {
     debugPrint("入力エラー：0から9までの数値を指定してください");
     return [];
   }
-  // iが7か9の時
+  // MEMO iが7か9の時
   else if (i == 7 || i == 9) {
-    // 3文字
+    // MEMO 3文字
     final gojyuonItems = await itemRepo.gojyuonInitial3(gojyuon[i]);
     // debugPrint("gojyuonItems: $gojyuonItems");
     return gojyuonItems;
   }
-  // iが7か9以外の時
+  // MEMO iが7か9以外の時
   else {
-    // 5文字
+    // MEMO 5文字
     final gojyuonItems = await itemRepo.gojyuonInitial5(gojyuon[i]);
     // debugPrint("gojyuonItems: $gojyuonItems");
     return gojyuonItems;

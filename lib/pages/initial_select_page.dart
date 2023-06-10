@@ -10,7 +10,8 @@ class InitialSelectPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false, // 戻るボタンの動作を無効化する
+      // MEMO 戻るボタンの動作を無効化する
+      onWillPop: () async => false,
       child: Scaffold(
         body: SafeArea(
           child: Column(

@@ -36,7 +36,7 @@ class InputPage extends StatelessWidget {
                         onChanged: (text) {
                           itemNameController.text = text;
                         },
-                        // value!.isEmptyで未入力を警告
+                        // MEMO value!.isEmptyで未入力を警告
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "商品名を入力してください";
@@ -46,7 +46,6 @@ class InputPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      // height: 70,
                       child: Padding(
                         padding: const EdgeInsets.all(2.0),
                         child: TextFormField(
@@ -62,8 +61,8 @@ class InputPage extends StatelessWidget {
                           onChanged: (text) {
                             itemPriceController.text = text;
                           },
-                          // value!.isEmptyで未入力を警告
-                          // !RegExp(r"^\d+$").hasMatch(value)で数字以外を警告
+                          // MEMO value!.isEmptyで未入力を警告
+                          // MEMO !RegExp(r"^\d+$").hasMatch(value)で数字以外を警告
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "価格を入力してください";
@@ -88,7 +87,7 @@ class InputPage extends StatelessWidget {
                         itemNameController.text,
                         int.parse(itemPriceController.text),
                       );
-                      // 保存した後に入力を空欄に
+                      // MEMO 保存した後に入力を空欄に
                       itemNameController.text = "";
                       itemPriceController.text = "";
                     }
@@ -101,70 +100,84 @@ class InputPage extends StatelessWidget {
               Expanded(
                 child: SizedBox(
                   width: double.infinity,
-                  child: SingleChildScrollView(
-                    child: StreamBuilder<List<Item>>(
-                      stream: itemRepo.watchAllItems(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                        return DataTable(
-                          columns: const [
-                            DataColumn(
-                              label: Text(
-                                "商品名",
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                            DataColumn(
-                              label: Text(
-                                "価格",
-                                textAlign: TextAlign.end,
-                              ),
-                            ),
-                            DataColumn(
-                              label: Text(
-                                "",
-                              ),
-                            ),
-                          ],
-                          rows: List<DataRow>.generate(
-                            snapshot.data!.length,
-                            (index) => DataRow(
-                              cells: <DataCell>[
-                                DataCell(
-                                  Text(
-                                    "${snapshot.data![index].itemName}",
-                                  ),
+                  child: StreamBuilder<List<Item>>(
+                    stream: itemRepo.watchAllItems(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: DataTable(
+                            columns: const [
+                              DataColumn(
+                                label: Text(
+                                  "ID",
+                                  textAlign: TextAlign.center,
                                 ),
-                                DataCell(
-                                  Text(
-                                    "${snapshot.data![index].itemPrice}",
-                                    textAlign: TextAlign.end,
-                                  ),
+                              ),
+                              DataColumn(
+                                label: Text(
+                                  "商品名",
+                                  textAlign: TextAlign.center,
                                 ),
-                                DataCell(
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.delete,
-                                      color: Colors.red.shade600,
+                              ),
+                              DataColumn(
+                                label: Text(
+                                  "価格",
+                                  textAlign: TextAlign.end,
+                                ),
+                              ),
+                              DataColumn(
+                                label: Text(
+                                  "",
+                                ),
+                              ),
+                            ],
+                            rows: List<DataRow>.generate(
+                              snapshot.data!.length,
+                              (index) => DataRow(
+                                cells: <DataCell>[
+                                  DataCell(
+                                    Text(
+                                      "${snapshot.data![index].itemId}",
                                     ),
-                                    onPressed: () async {
-                                      await itemRepo.deleteItem(
-                                        snapshot.data![index].itemId,
-                                      );
-                                    },
                                   ),
-                                ),
-                              ],
+                                  DataCell(
+                                    Text(
+                                      "${snapshot.data![index].itemName}",
+                                    ),
+                                  ),
+                                  DataCell(
+                                    Text(
+                                      "${snapshot.data![index].itemPrice}",
+                                      textAlign: TextAlign.end,
+                                    ),
+                                  ),
+                                  DataCell(
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.delete,
+                                        color: Colors.red.shade600,
+                                      ),
+                                      onPressed: () async {
+                                        await itemRepo.deleteItem(
+                                          snapshot.data![index].itemId,
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        );
-                      },
-                    ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),

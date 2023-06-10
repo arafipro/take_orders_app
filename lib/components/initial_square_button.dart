@@ -16,7 +16,8 @@ class InitialSquareButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.teal[50],
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8), // 四角形の角丸半径を指定
+          // MEMO 四角形の角丸半径を指定
+          borderRadius: BorderRadius.circular(8),
         ),
       ),
       onPressed: onPressed,
