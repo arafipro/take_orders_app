@@ -466,13 +466,155 @@ class OrdersCompanion extends UpdateCompanion<Order> {
   }
 }
 
+class OrdersWithItemData extends DataClass {
+  final int id;
+  final int? orderNum;
+  final DateTime orderTime;
+  final String? itemName;
+  final int? itemPrice;
+  const OrdersWithItemData(
+      {required this.id,
+      this.orderNum,
+      required this.orderTime,
+      this.itemName,
+      this.itemPrice});
+  factory OrdersWithItemData.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return OrdersWithItemData(
+      id: serializer.fromJson<int>(json['id']),
+      orderNum: serializer.fromJson<int?>(json['orderNum']),
+      orderTime: serializer.fromJson<DateTime>(json['orderTime']),
+      itemName: serializer.fromJson<String?>(json['itemName']),
+      itemPrice: serializer.fromJson<int?>(json['itemPrice']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'orderNum': serializer.toJson<int?>(orderNum),
+      'orderTime': serializer.toJson<DateTime>(orderTime),
+      'itemName': serializer.toJson<String?>(itemName),
+      'itemPrice': serializer.toJson<int?>(itemPrice),
+    };
+  }
+
+  OrdersWithItemData copyWith(
+          {int? id,
+          Value<int?> orderNum = const Value.absent(),
+          DateTime? orderTime,
+          Value<String?> itemName = const Value.absent(),
+          Value<int?> itemPrice = const Value.absent()}) =>
+      OrdersWithItemData(
+        id: id ?? this.id,
+        orderNum: orderNum.present ? orderNum.value : this.orderNum,
+        orderTime: orderTime ?? this.orderTime,
+        itemName: itemName.present ? itemName.value : this.itemName,
+        itemPrice: itemPrice.present ? itemPrice.value : this.itemPrice,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('OrdersWithItemData(')
+          ..write('id: $id, ')
+          ..write('orderNum: $orderNum, ')
+          ..write('orderTime: $orderTime, ')
+          ..write('itemName: $itemName, ')
+          ..write('itemPrice: $itemPrice')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, orderNum, orderTime, itemName, itemPrice);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is OrdersWithItemData &&
+          other.id == this.id &&
+          other.orderNum == this.orderNum &&
+          other.orderTime == this.orderTime &&
+          other.itemName == this.itemName &&
+          other.itemPrice == this.itemPrice);
+}
+
+class $OrdersWithItemView
+    extends ViewInfo<$OrdersWithItemView, OrdersWithItemData>
+    implements HasResultSet {
+  final String? _alias;
+  @override
+  final _$OrderDatabase attachedDatabase;
+  $OrdersWithItemView(this.attachedDatabase, [this._alias]);
+  $OrdersTable get orders => attachedDatabase.orders.createAlias('t0');
+  $ItemsTable get items => attachedDatabase.items.createAlias('t1');
+  @override
+  List<GeneratedColumn> get $columns =>
+      [id, orderNum, orderTime, itemName, itemPrice];
+  @override
+  String get aliasedName => _alias ?? entityName;
+  @override
+  String get entityName => 'orders_with_item';
+  @override
+  String? get createViewStmt => null;
+  @override
+  $OrdersWithItemView get asDslTable => this;
+  @override
+  OrdersWithItemData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return OrdersWithItemData(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      orderNum: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}order_num']),
+      orderTime: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}order_time'])!,
+      itemName: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}item_name']),
+      itemPrice: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}item_price']),
+    );
+  }
+
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      generatedAs: GeneratedAs(orders.id, false), type: DriftSqlType.int);
+  late final GeneratedColumn<int> orderNum = GeneratedColumn<int>(
+      'order_num', aliasedName, true,
+      generatedAs: GeneratedAs(orders.orderNum, false), type: DriftSqlType.int);
+  late final GeneratedColumn<DateTime> orderTime = GeneratedColumn<DateTime>(
+      'order_time', aliasedName, false,
+      generatedAs: GeneratedAs(orders.orderTime, false),
+      type: DriftSqlType.dateTime);
+  late final GeneratedColumn<String> itemName = GeneratedColumn<String>(
+      'item_name', aliasedName, true,
+      generatedAs: GeneratedAs(items.itemName, false),
+      type: DriftSqlType.string);
+  late final GeneratedColumn<int> itemPrice = GeneratedColumn<int>(
+      'item_price', aliasedName, true,
+      generatedAs: GeneratedAs(items.itemPrice, false), type: DriftSqlType.int);
+  @override
+  $OrdersWithItemView createAlias(String alias) {
+    return $OrdersWithItemView(attachedDatabase, alias);
+  }
+
+  @override
+  Query? get query =>
+      (attachedDatabase.selectOnly(orders)..addColumns($columns))
+          .join([innerJoin(items, items.itemId.equalsExp(orders.itemId))]);
+  @override
+  Set<String> get readTables => const {'orders', 'items'};
+}
+
 abstract class _$OrderDatabase extends GeneratedDatabase {
   _$OrderDatabase(QueryExecutor e) : super(e);
   late final $ItemsTable items = $ItemsTable(this);
   late final $OrdersTable orders = $OrdersTable(this);
+  late final $OrdersWithItemView ordersWithItem = $OrdersWithItemView(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [items, orders];
+  List<DatabaseSchemaEntity> get allSchemaEntities =>
+      [items, orders, ordersWithItem];
 }

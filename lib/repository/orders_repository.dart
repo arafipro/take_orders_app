@@ -19,7 +19,7 @@ class OrdersRepository {
           OrdersCompanion(
             orderNum: Value(orderNum),
             orderTime: Value(orderTime),
-            item: Value(itemId),
+            itemId: Value(itemId),
           ),
         );
   }
@@ -46,7 +46,7 @@ class OrdersRepository {
       OrdersCompanion(
         orderNum: Value(orderNum),
         orderTime: Value(orderTime),
-        item: Value(itemId),
+        itemId: Value(itemId),
       ),
     );
   }
