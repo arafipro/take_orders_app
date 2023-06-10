@@ -2,8 +2,9 @@ import "package:drift/drift.dart";
 import "package:flutter/material.dart";
 import "package:take_orders_app/db_utils/order_db.dart";
 import "package:take_orders_app/repository/items_repository.dart";
+import "package:take_orders_app/repository/orders_repository.dart";
 
-// ダミー商品データ
+// MEMO ダミー商品データ
 const dummyItems = [
   ItemsCompanion(itemName: Value("ハンバーガー"), itemPrice: Value(500)),
   ItemsCompanion(itemName: Value("タコス"), itemPrice: Value(400)),
@@ -62,12 +63,34 @@ const dummyItems = [
   ItemsCompanion(itemName: Value("モダン焼き"), itemPrice: Value(450)),
 ];
 
-// 商品データがない場合、ダミー商品データを登録
+// MEMO 現在の日時を取得
+final nowDateTime = DateTime.now();
+
+// MEMO ダミー注文データ
+final dummyOrders = [
+  OrdersCompanion(
+      orderNum: const Value(5),
+      orderTime: Value(nowDateTime),
+      itemId: const Value(0)),
+  OrdersCompanion(
+      orderNum: const Value(5),
+      orderTime: Value(nowDateTime),
+      itemId: const Value(1)),
+  OrdersCompanion(
+      orderNum: const Value(5),
+      orderTime: Value(nowDateTime),
+      itemId: const Value(2))
+];
+
+// MEMO データがない場合、ダミーデータを登録
 Future<void> dummyItem() async {
   final itemRepo = ItemsRepository();
+  final orderRepo = OrdersRepository();
   final allItems = await itemRepo.getAllItems();
+
   if (allItems.isEmpty) {
     await itemRepo.addItems(dummyItems);
+    await orderRepo.addOrders(dummyOrders);
     debugPrint("ダミーデータを登録しました");
   } else {
     debugPrint("ダミーデータ登録済");

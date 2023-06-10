@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:take_orders_app/pages/initial_select_page.dart";
 import "package:take_orders_app/pages/input_page.dart";
+import "package:take_orders_app/pages/order_list_page.dart";
 
 class TopPage extends StatelessWidget {
   const TopPage({super.key});
@@ -8,7 +9,8 @@ class TopPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false, // 戻るボタンの動作を無効化する
+      // MEMO 戻るボタンの動作を無効化する
+      onWillPop: () async => false,
       child: Scaffold(
         body: SafeArea(
           child: Column(
@@ -44,12 +46,17 @@ class TopPage extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  child: const Text("売上集計"),
+                  child: const Text("売上一覧"),
                   onPressed: () {
-                    debugPrint("売上集計");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OrderListPage(),
+                      ),
+                    );
                   },
                 ),
-              )
+              ),
             ],
           ),
         ),
