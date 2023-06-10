@@ -1,19 +1,25 @@
+import "package:drift/drift.dart";
 import "package:flutter/material.dart";
+import "package:take_orders_app/db_utils/order_db.dart";
+import "package:take_orders_app/repository/orders_repository.dart";
 
 class ItemOrderDialog extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final orderNumController = TextEditingController();
+  final orderRepo = OrdersRepository();
   /*　引数の詳細
   title       ：ダイアログタイトル
   buttonText  ：ダイアログボタンタイトル
   */
   final String title;
   final String buttonText;
+  final int itemId;
 
   ItemOrderDialog({
     super.key,
     required this.title,
     required this.buttonText,
+    required this.itemId,
   });
 
   @override
@@ -62,10 +68,17 @@ class ItemOrderDialog extends StatelessWidget {
       actions: <Widget>[
         ElevatedButton(
           // MEMO onPressedがnullの場合はダイアログを閉じる
-          onPressed: () {
+          onPressed: () async {
+            final navigator = Navigator.of(context).pop();
             if (_formKey.currentState!.validate()) {
               debugPrint(orderNumController.text);
-              Navigator.of(context).pop();
+              final order = OrdersCompanion(
+                orderNum: Value(int.parse(orderNumController.text)),
+                orderTime: Value(DateTime.now()),
+                itemId: Value(itemId),
+              );
+              await orderRepo.addOrdersCompanion(order);
+              navigator;
             }
           },
           child: Text(buttonText),

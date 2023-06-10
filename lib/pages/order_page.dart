@@ -50,6 +50,7 @@ class OrderPage extends StatelessWidget {
                             builder: (_) {
                               return ItemOrderDialog(
                                 title: "${searchData[index].itemName}",
+                                itemId: searchData[index].itemId,
                                 buttonText: "OK",
                               );
                             },
