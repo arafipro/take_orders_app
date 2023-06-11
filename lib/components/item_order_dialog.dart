@@ -8,8 +8,9 @@ class ItemOrderDialog extends StatelessWidget {
   final orderNumController = TextEditingController();
   final orderRepo = OrdersRepository();
   /*　引数の詳細
-  title       ：ダイアログタイトル
-  buttonText  ：ダイアログボタンタイトル
+  title      : ダイアログタイトル
+  buttonText : ダイアログボタンタイトル
+  itemId     : テーブルitemsのitemId
   */
   final String title;
   final String buttonText;
@@ -24,6 +25,13 @@ class ItemOrderDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // MEMO ダイアログを閉じる関数
+    void closeDialog() {
+      Future.delayed(Duration.zero, () {
+        Navigator.of(context).pop();
+      });
+    }
+
     return AlertDialog(
       title: Text(
         title,
@@ -56,9 +64,9 @@ class ItemOrderDialog extends StatelessWidget {
             // MEMO value!.isEmptyで未入力を警告
             if (value!.isEmpty) {
               return "注文数を入力してください";
-              // MEMO !RegExp(r"^\d+$").hasMatch(value)で数字以外を警告
-            } else if (!RegExp(r"^\d+$").hasMatch(value)) {
-              return "数字を入力してください";
+              // MEMO 正規表現で0以上の数字以外を警告
+            } else if (!RegExp(r"^[1-9]\d*$").hasMatch(value)) {
+              return "0以上の数字を入力してください";
             } else {
               return null;
             }
@@ -69,7 +77,6 @@ class ItemOrderDialog extends StatelessWidget {
         ElevatedButton(
           // MEMO onPressedがnullの場合はダイアログを閉じる
           onPressed: () async {
-            final navigator = Navigator.of(context).pop();
             if (_formKey.currentState!.validate()) {
               debugPrint(orderNumController.text);
               final order = OrdersCompanion(
@@ -78,7 +85,7 @@ class ItemOrderDialog extends StatelessWidget {
                 itemId: Value(itemId),
               );
               await orderRepo.addOrdersCompanion(order);
-              navigator;
+              closeDialog();
             }
           },
           child: Text(buttonText),
