@@ -1,14 +1,14 @@
 import "package:take_orders_app/db_utils/order_db.dart";
 
-final database = OrderDatabase();
+final dbOrderWItem = OrderDatabase();
 
 class OrdersWithItemRepository {
   // MEMO 全検索
   Stream<List<OrdersWithItemData>> watchAllOrdersWithItems() {
-    return database.select(database.ordersWithItem).watch();
+    return dbOrderWItem.select(dbOrderWItem.ordersWithItem).watch();
   }
 
   Future<List<OrdersWithItemData>> getAllOrdersWithItems() async {
-    return await database.select(database.ordersWithItem).get();
+    return await dbOrderWItem.select(dbOrderWItem.ordersWithItem).get();
   }
 }

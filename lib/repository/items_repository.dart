@@ -1,38 +1,38 @@
 import "package:drift/drift.dart";
 import "package:take_orders_app/db_utils/order_db.dart";
 
-final database = OrderDatabase();
+final dbItem = OrderDatabase();
 
 class ItemsRepository {
   // MEMO 全検索
   Stream<List<Item>> watchAllItems() {
-    return (database.select(database.items)).watch();
+    return (dbItem.select(dbItem.items)).watch();
   }
 
   Future<List<Item>> getAllItems() async {
-    return await database.select(database.items).get();
+    return await dbItem.select(dbItem.items).get();
   }
 
   // MEMO 一件登録
   Future<void> addItem(String itemName, int itemPrice) async {
-    await database.into(database.items).insert(
+    await dbItem.into(dbItem.items).insert(
         ItemsCompanion(itemName: Value(itemName), itemPrice: Value(itemPrice)));
   }
 
   Future<void> addItemsCompanion(ItemsCompanion item) async {
-    await database.into(database.items).insert(item);
+    await dbItem.into(dbItem.items).insert(item);
   }
 
   // MEMO 複数登録
   Future<void> addItems(List<ItemsCompanion> items) async {
-    await database.batch((batch) {
-      batch.insertAll(database.items, items);
+    await dbItem.batch((batch) {
+      batch.insertAll(dbItem.items, items);
     });
   }
 
   // MEMO 更新
   Future<int> updateItem(int id, String itemName, int itemPrice) {
-    return (database.update(database.items)
+    return (dbItem.update(dbItem.items)
           ..where(
             (tbl) => tbl.itemId.equals(id),
           ))
@@ -45,7 +45,7 @@ class ItemsRepository {
   }
 
   Future<int> updateItemsCompanion(int id, ItemsCompanion item) {
-    return (database.update(database.items)
+    return (dbItem.update(dbItem.items)
           ..where(
             (tbl) => tbl.itemId.equals(id),
           ))
@@ -54,7 +54,7 @@ class ItemsRepository {
 
   // MEMO 削除
   Future<int> deleteItem(int id) async {
-    return await (database.delete(database.items)
+    return await (dbItem.delete(dbItem.items)
           ..where(
             (tbl) => tbl.itemId.equals(id),
           ))
@@ -64,7 +64,7 @@ class ItemsRepository {
   // MEMO 商品の頭文字gojyuonInitialが「あかさたなはまら」の時に検索で使用
   // MEMO 検索条件を正規表現で
   Future<List<Item>> gojyuonInitial5(List<String> gojyuonInitial) async {
-    return await (database.select(database.items)
+    return await (dbItem.select(dbItem.items)
           ..where(
             (tbl) => tbl.itemName.regexp(
               "^(${gojyuonInitial[0]}|${gojyuonInitial[1]}|${gojyuonInitial[2]}|${gojyuonInitial[3]}|${gojyuonInitial[4]}|${gojyuonInitial[5]}|${gojyuonInitial[6]}|${gojyuonInitial[7]}|${gojyuonInitial[8]}|${gojyuonInitial[9]}).+",
@@ -75,7 +75,7 @@ class ItemsRepository {
 
   // MEMO 検索条件を論理演算子で
   // Future<List<Item>> gojyuonInitial5(List<String> gojyuonInitial) async {
-  //   return await (database.select(database.items)
+  //   return await (dbItem.select(dbItem.items)
   //         ..where(
   //           (tbl) =>
   //               tbl.itemName.like("${gojyuonInitial[0]}%") |
@@ -95,7 +95,7 @@ class ItemsRepository {
   // MEMO 商品の頭文字が「やわ」の時に検索で使用
   // MEMO 検索条件を正規表現で
   Future<List<Item>> gojyuonInitial3(List<String> gojyuonInitial) async {
-    return await (database.select(database.items)
+    return await (dbItem.select(dbItem.items)
           ..where(
             (tbl) => tbl.itemName.regexp(
               "^(${gojyuonInitial[0]}|${gojyuonInitial[1]}|${gojyuonInitial[2]}|${gojyuonInitial[3]}|${gojyuonInitial[4]}|${gojyuonInitial[5]}).+",
@@ -106,7 +106,7 @@ class ItemsRepository {
 
   // MEMO 検索条件を論理演算子で
   // Future<List<Item>> gojyuonInitial3(List<String> gojyuonInitial) async {
-  //   return await (database.select(database.items)
+  //   return await (dbItem.select(dbItem.items)
   //         ..where(
   //           (tbl) =>
   //               tbl.itemName.like("${gojyuonInitial[0]}%") |
