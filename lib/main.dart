@@ -7,7 +7,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // MEMO 商品データがない場合、ダミー商品データを登録
   // await dummyItem();
-  
+
   runApp(const MainApp());
 }
 
@@ -28,7 +28,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const TopPage(),
+      home: TopPage(),
     );
   }
 }

@@ -42,6 +42,7 @@ class InitialSelectPage extends StatelessWidget {
                               MaterialPageRoute(
                                 builder: (context) => OrderPage(
                                   searchData: searchItem,
+                                  isBackButtonEffect: true,
                                 ),
                               ),
                             );
@@ -61,7 +62,9 @@ class InitialSelectPage extends StatelessWidget {
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: const Text("長押しして終了してください"),
+                  content: const Text("終了するときは長押ししてください"),
+                  // MEMO 1秒で閉じる
+                  duration: const Duration(seconds: 1),
                   action: SnackBarAction(
                     label: "OK",
                     onPressed: () {
@@ -76,7 +79,7 @@ class InitialSelectPage extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const TopPage(),
+                builder: (context) => TopPage(),
               ),
             );
           },
