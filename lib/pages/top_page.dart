@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:take_orders_app/pages/data_mgmt_page.dart";
 import "package:take_orders_app/pages/initial_select_page.dart";
 import "package:take_orders_app/pages/input_page.dart";
 import "package:take_orders_app/pages/order_list_page.dart";
@@ -84,6 +85,20 @@ class TopPage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => OrderListPage(),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  child: const Text("データ管理"),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DataManagementPage(),
                       ),
                     );
                   },

@@ -6,4 +6,12 @@ class Orders extends Table {
   IntColumn get orderNum => integer().nullable()();
   DateTimeColumn get orderTime => dateTime()();
   IntColumn get itemId => integer().nullable().references(Items, #itemId)();
+
+  // MEMO ジェネレートファイルをビルド後に追加
+  List<String> orderToCsvFormat() => [
+        "$id",
+        "$orderNum",
+        "$orderTime",
+        "$itemId",
+      ];
 }

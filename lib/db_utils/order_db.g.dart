@@ -153,6 +153,12 @@ class Item extends DataClass implements Insertable<Item> {
           other.itemId == this.itemId &&
           other.itemName == this.itemName &&
           other.itemPrice == this.itemPrice);
+
+  List<String> itemToCsvFormat() => [
+        "$itemId",
+        "$itemName",
+        "$itemPrice",
+      ];
 }
 
 class ItemsCompanion extends UpdateCompanion<Item> {
@@ -390,6 +396,13 @@ class Order extends DataClass implements Insertable<Order> {
           other.orderNum == this.orderNum &&
           other.orderTime == this.orderTime &&
           other.itemId == this.itemId);
+
+  List<String> orderToCsvFormat() => [
+        "$id",
+        "$orderNum",
+        "$orderTime",
+        "$itemId",
+      ];
 }
 
 class OrdersCompanion extends UpdateCompanion<Order> {
