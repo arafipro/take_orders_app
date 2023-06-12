@@ -2,8 +2,8 @@ import "package:flutter/material.dart";
 import "package:take_orders_app/db_utils/order_db.dart";
 import "package:take_orders_app/repository/items_repository.dart";
 
-class InputPage extends StatelessWidget {
-  InputPage({super.key});
+class ItemInputPage extends StatelessWidget {
+  ItemInputPage({super.key});
   final itemRepo = ItemsRepository();
   final itemNameController = TextEditingController();
   final itemPriceController = TextEditingController();

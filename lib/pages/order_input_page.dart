@@ -4,7 +4,7 @@ import "package:take_orders_app/components/item_order_dialog.dart";
 import "package:take_orders_app/db_utils/order_db.dart";
 import "package:take_orders_app/pages/top_page.dart";
 
-class OrderPage extends StatelessWidget {
+class OrderInputPage extends StatelessWidget {
   /*　引数の詳細
   searchData  : 検索したItemのデータ
   isBackButtonEffect : 戻るボタンの動作
@@ -15,7 +15,7 @@ class OrderPage extends StatelessWidget {
   // isBackButtonEffect = false : 戻るボタンを無効
   final bool isBackButtonEffect;
 
-  const OrderPage({
+  const OrderInputPage({
     super.key,
     required this.searchData,
     this.isBackButtonEffect = false,

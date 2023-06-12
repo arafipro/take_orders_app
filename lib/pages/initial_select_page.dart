@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:take_orders_app/components/initial_square_button.dart";
 import "package:take_orders_app/db_utils/select_items.dart";
-import "package:take_orders_app/pages/order_page.dart";
+import "package:take_orders_app/pages/order_input_page.dart";
 import "package:take_orders_app/pages/top_page.dart";
 
 class InitialSelectPage extends StatelessWidget {
@@ -40,7 +40,7 @@ class InitialSelectPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => OrderPage(
+                                builder: (context) => OrderInputPage(
                                   searchData: searchItem,
                                   isBackButtonEffect: true,
                                 ),

@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
 import "package:take_orders_app/pages/data_mgmt_page.dart";
 import "package:take_orders_app/pages/initial_select_page.dart";
-import "package:take_orders_app/pages/input_page.dart";
+import "package:take_orders_app/pages/item_input_page.dart";
 import "package:take_orders_app/pages/order_list_page.dart";
-import "package:take_orders_app/pages/order_page.dart";
+import "package:take_orders_app/pages/order_input_page.dart";
 import "package:take_orders_app/repository/items_repository.dart";
 
 class TopPage extends StatelessWidget {
@@ -41,7 +41,7 @@ class TopPage extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    OrderPage(searchData: allItems),
+                                    OrderInputPage(searchData: allItems),
                               ),
                             );
                           },
@@ -70,7 +70,7 @@ class TopPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => InputPage(),
+                        builder: (context) => ItemInputPage(),
                       ),
                     );
                   },
