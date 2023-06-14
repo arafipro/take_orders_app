@@ -6,16 +6,18 @@ import "package:path_provider/path_provider.dart";
 import "package:path/path.dart" as p;
 import "package:take_orders_app/repository/items_repository.dart";
 import "package:take_orders_app/repository/orders_repository.dart";
+import "package:take_orders_app/repository/orders_with_item_repository.dart";
 
 final itemRepo = ItemsRepository();
 final orderRepo = OrdersRepository();
+final owiRepo = OrdersWithItemRepository();
 
-itemCreateCsv() async {
-  final itemHeader = ["itemId", "itemName", "itemPrice"];
-  final itemResults = await itemRepo.getAllItems();
-  final itemRows = itemResults.map((u) => u.itemToCsvFormat()).toList();
+Future<void> itemCreateCsv() async {
+  final header = ["itemId", "itemName", "itemPrice"];
+  final results = await itemRepo.getAllItems();
+  final rows = results.map((u) => u.itemToCsvFormat()).toList();
   final csv = const ListToCsvConverter().convert(
-    [itemHeader, ...itemRows],
+    [header, ...rows],
   );
   final directory = await getApplicationDocumentsDirectory();
   debugPrint(directory.path);
@@ -29,12 +31,12 @@ itemCreateCsv() async {
   debugPrint("Item:$csv");
 }
 
-orderCreateCsv() async {
-  final orderHeader = ["id", "orderNum", "orderTime", "itemId"];
-  final orderResults = await orderRepo.getAllOrders();
-  final orderRows = orderResults.map((u) => u.orderToCsvFormat()).toList();
+Future<void> orderCreateCsv() async {
+  final header = ["id", "orderNum", "orderTime", "itemId"];
+  final results = await orderRepo.getAllOrders();
+  final rows = results.map((u) => u.orderToCsvFormat()).toList();
   final csv = const ListToCsvConverter().convert(
-    [orderHeader, ...orderRows],
+    [header, ...rows],
   );
   final directory = await getApplicationDocumentsDirectory();
   debugPrint(directory.path);
@@ -46,4 +48,29 @@ orderCreateCsv() async {
   }
   await file.writeAsString(csv);
   debugPrint("Order:$csv");
+}
+
+Future<void> orderWItemCreateCsv() async {
+  final header = [
+    "id",
+    "orderNum",
+    "orderTime",
+    "itemName",
+    "itemPrice"
+  ];
+  final results = await owiRepo.getAllOrdersWithItems();
+  final rows = results.map((u) => u.owiToCsvFormat()).toList();
+  final csv = const ListToCsvConverter().convert(
+    [header, ...rows],
+  );
+  final directory = await getApplicationDocumentsDirectory();
+  debugPrint(directory.path);
+  final file = File(p.join(directory.path, "order_with_item.csv"));
+  debugPrint("$file");
+  if (!await file.exists()) {
+    await file.create(recursive: true);
+    debugPrint("Flie create");
+  }
+  await file.writeAsString(csv);
+  debugPrint("OrderWItem:$csv");
 }

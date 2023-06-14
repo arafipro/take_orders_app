@@ -16,4 +16,13 @@ abstract class OrdersWithItem extends View {
       ])
           .from(orders)
           .join([innerJoin(items, items.itemId.equalsExp(orders.itemId))]);
+
+  // MEMO ジェネレートファイルをビルド後に追加
+  List<String> owiToCsvFormat() => [
+        "${orders.id}",
+        "${orders.orderNum}",
+        "${orders.orderTime}",
+        "${items.itemName}",
+        "${items.itemPrice}"
+      ];
 }

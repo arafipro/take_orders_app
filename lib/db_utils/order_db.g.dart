@@ -550,6 +550,14 @@ class OrdersWithItemData extends DataClass {
           other.orderTime == this.orderTime &&
           other.itemName == this.itemName &&
           other.itemPrice == this.itemPrice);
+
+  List<String> owiToCsvFormat() => [
+        "${id}",
+        "${orderNum}",
+        "${orderTime}",
+        "${itemName}",
+        "${itemPrice}"
+      ];
 }
 
 class $OrdersWithItemView

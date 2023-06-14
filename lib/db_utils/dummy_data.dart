@@ -71,7 +71,55 @@ final dummyOrders = [
   OrdersCompanion(
       orderNum: const Value(5),
       orderTime: Value(nowDateTime),
-      itemId: const Value(0)),
+      itemId: const Value(3)),
+  OrdersCompanion(
+      orderNum: const Value(5),
+      orderTime: Value(nowDateTime),
+      itemId: const Value(1)),
+  OrdersCompanion(
+      orderNum: const Value(5),
+      orderTime: Value(nowDateTime),
+      itemId: const Value(3)),
+  OrdersCompanion(
+      orderNum: const Value(5),
+      orderTime: Value(nowDateTime),
+      itemId: const Value(1)),
+  OrdersCompanion(
+      orderNum: const Value(5),
+      orderTime: Value(nowDateTime),
+      itemId: const Value(3)),
+  OrdersCompanion(
+      orderNum: const Value(5),
+      orderTime: Value(nowDateTime),
+      itemId: const Value(1)),
+  OrdersCompanion(
+      orderNum: const Value(5),
+      orderTime: Value(nowDateTime),
+      itemId: const Value(3)),
+  OrdersCompanion(
+      orderNum: const Value(5),
+      orderTime: Value(nowDateTime),
+      itemId: const Value(1)),
+  OrdersCompanion(
+      orderNum: const Value(5),
+      orderTime: Value(nowDateTime),
+      itemId: const Value(3)),
+  OrdersCompanion(
+      orderNum: const Value(5),
+      orderTime: Value(nowDateTime),
+      itemId: const Value(1)),
+  OrdersCompanion(
+      orderNum: const Value(5),
+      orderTime: Value(nowDateTime),
+      itemId: const Value(3)),
+  OrdersCompanion(
+      orderNum: const Value(5),
+      orderTime: Value(nowDateTime),
+      itemId: const Value(1)),
+  OrdersCompanion(
+      orderNum: const Value(5),
+      orderTime: Value(nowDateTime),
+      itemId: const Value(3)),
   OrdersCompanion(
       orderNum: const Value(5),
       orderTime: Value(nowDateTime),

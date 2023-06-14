@@ -20,25 +20,29 @@ class DataManagementPage extends StatelessWidget {
             ),
             Column(
               children: [
-                Row(
-                  children: [
-                    const Text("Items CSV出力"),
-                    ElevatedButton(
-                        onPressed: () async {
-                          itemCreateCsv();
-                        },
-                        child: const Text("出力"))
-                  ],
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      onPressed: () async {
+                        itemCreateCsv();
+                      },
+                      child: const Text("Items CSV出力")),
                 ),
-                Row(
-                  children: [
-                    const Text("Orders CSV出力"),
-                    ElevatedButton(
-                        onPressed: () async {
-                          orderCreateCsv();
-                        },
-                        child: const Text("出力"))
-                  ],
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      onPressed: () async {
+                        orderCreateCsv();
+                      },
+                      child: const Text("Orders CSV出力")),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      onPressed: () async {
+                        orderWItemCreateCsv();
+                      },
+                      child: const Text("Orders with Item CSV出力")),
                 ),
               ],
             ),
