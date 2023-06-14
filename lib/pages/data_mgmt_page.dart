@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:take_orders_app/repository/orders_repository.dart";
+import "package:take_orders_app/utils/check_files.dart";
 import "package:take_orders_app/utils/create_csv.dart";
 
 class DataManagementPage extends StatelessWidget {
@@ -43,6 +44,14 @@ class DataManagementPage extends StatelessWidget {
                         orderWItemCreateCsv();
                       },
                       child: const Text("Orders with Item CSV出力")),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      onPressed: () async {
+                        checkFiles();
+                      },
+                      child: const Text("ファイル確認")),
                 ),
               ],
             ),
