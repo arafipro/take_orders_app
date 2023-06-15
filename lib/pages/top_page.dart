@@ -4,15 +4,19 @@ import "package:take_orders_app/pages/initial_select_page.dart";
 import "package:take_orders_app/pages/item_input_page.dart";
 import "package:take_orders_app/pages/order_list_page.dart";
 import "package:take_orders_app/pages/order_input_page.dart";
+import "package:take_orders_app/pages/google_drive_ops_page.dart";
 import "package:take_orders_app/repository/items_repository.dart";
 
 class TopPage extends StatelessWidget {
   TopPage({super.key});
 
   final itemRepo = ItemsRepository();
-  // isSelected = false : OrderPage()
-  // isSelected = true : InitialSelectPage() => OrderPage()
-  final bool isSelected = false;
+  // isInitialSelected = false : OrderPage()
+  // isInitialSelected = true : InitialSelectPage() => OrderPage()
+  final bool isInitialSelected = false;
+  // isGoogleDriveSelected = false : GoogleDriveOperationPage()非表示
+  // isGoogleDriveSelected = true : GoogleDriveOperationPage()表示
+  final bool isGoogleDriveSelected = true;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,7 @@ class TopPage extends StatelessWidget {
                 child: ElevatedButton(
                   child: const Text("注文一覧（全商品）"),
                   // isSelectedで切り替え機能を
-                  onPressed: () => isSelected
+                  onPressed: () => isInitialSelected
                       ? Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -104,6 +108,23 @@ class TopPage extends StatelessWidget {
                   },
                 ),
               ),
+              isGoogleDriveSelected
+                  ? SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        child: const Text("Google Drive 操作テスト"),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const GoogleDriveOpsPage(),
+                            ),
+                          );
+                        },
+                      ),
+                    )
+                  : const SizedBox(),
             ],
           ),
         ),
