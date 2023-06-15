@@ -1,6 +1,7 @@
 import "package:drift/drift.dart";
 import "package:flutter/material.dart";
 import "package:take_orders_app/db_utils/order_db.dart";
+import "package:take_orders_app/pages/order_list_page.dart";
 import "package:take_orders_app/repository/orders_repository.dart";
 
 class ItemOrderDialog extends StatelessWidget {
@@ -9,17 +10,14 @@ class ItemOrderDialog extends StatelessWidget {
   final orderRepo = OrdersRepository();
   /*　引数の詳細
   title      : ダイアログタイトル
-  buttonText : ダイアログボタンタイトル
   itemId     : テーブルitemsのitemId
   */
   final String title;
-  final String buttonText;
   final int itemId;
 
   ItemOrderDialog({
     super.key,
     required this.title,
-    required this.buttonText,
     required this.itemId,
   });
 
@@ -75,7 +73,6 @@ class ItemOrderDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         ElevatedButton(
-          // MEMO onPressedがnullの場合はダイアログを閉じる
           onPressed: () async {
             if (_formKey.currentState!.validate()) {
               debugPrint(orderNumController.text);
@@ -88,7 +85,30 @@ class ItemOrderDialog extends StatelessWidget {
               closeDialog();
             }
           },
-          child: Text(buttonText),
+          child: const Text("続ける"),
+        ),
+        ElevatedButton(
+          // MEMO onPressedがnullの場合はダイアログを閉じる
+          onPressed: () async {
+            if (_formKey.currentState!.validate()) {
+              final navigator = Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => OrderListPage(),
+                ),
+              );
+              debugPrint(orderNumController.text);
+              final order = OrdersCompanion(
+                orderNum: Value(int.parse(orderNumController.text)),
+                orderTime: Value(DateTime.now()),
+                itemId: Value(itemId),
+              );
+              await orderRepo.addOrdersCompanion(order);
+              await navigator;
+              closeDialog();
+            }
+          },
+          child: const Text("受注一覧に戻る"),
         ),
       ],
     );
