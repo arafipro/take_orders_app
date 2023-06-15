@@ -9,6 +9,7 @@ abstract class OrdersWithItem extends View {
   @override
   Query as() => select([
         orders.id,
+        orders.orderCheck,
         orders.orderNum,
         orders.orderTime,
         items.itemName,
@@ -20,6 +21,7 @@ abstract class OrdersWithItem extends View {
   // MEMO ジェネレートファイルをビルド後に追加
   List<String> owiToCsvFormat() => [
         "${orders.id}",
+        "${orders.orderCheck}",
         "${orders.orderNum}",
         "${orders.orderTime}",
         "${items.itemName}",

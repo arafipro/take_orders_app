@@ -14,9 +14,11 @@ class OrdersRepository {
   }
 
   // MEMO 一件登録
-  Future<void> addOrder(int orderNum, DateTime orderTime, int itemId) async {
+  Future<void> addOrder(
+      bool orderCheck, int orderNum, DateTime orderTime, int itemId) async {
     await dbOrder.into(dbOrder.orders).insert(
           OrdersCompanion(
+            orderCheck: Value(orderCheck),
             orderNum: Value(orderNum),
             orderTime: Value(orderTime),
             itemId: Value(itemId),

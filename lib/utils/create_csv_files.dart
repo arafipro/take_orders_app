@@ -32,7 +32,7 @@ Future<void> itemCreateCsv() async {
 }
 
 Future<void> orderCreateCsv() async {
-  final header = ["id", "orderNum", "orderTime", "itemId"];
+  final header = ["id", "orderCheck", "orderNum", "orderTime", "itemId"];
   final results = await orderRepo.getAllOrders();
   final rows = results.map((u) => u.orderToCsvFormat()).toList();
   final csv = const ListToCsvConverter().convert(
@@ -53,6 +53,7 @@ Future<void> orderCreateCsv() async {
 Future<void> orderWItemCreateCsv() async {
   final header = [
     "id",
+    "orderCheck",
     "orderNum",
     "orderTime",
     "itemName",

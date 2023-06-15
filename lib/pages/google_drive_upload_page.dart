@@ -114,9 +114,7 @@ class _GoogleDriveUploadPageState extends State<GoogleDriveUploadPage> {
     // MEMO CSVファイルの有無をチェック
     List<FileSystemEntity> fileEntity = await checkCsvFiles();
     // MEMO CSVファイルがない場合はファイルを作成
-    if (fileEntity.isEmpty) {
       orderWItemCreateCsv();
-    }
     // MEMO サインインしているかチェック
     final signInResult = await _googleSignInMethod();
     if (!signInResult) {

@@ -69,62 +69,77 @@ final nowDateTime = DateTime.now();
 // MEMO ダミー注文データ
 final dummyOrders = [
   OrdersCompanion(
+      orderCheck: const Value(false),
       orderNum: const Value(5),
       orderTime: Value(nowDateTime),
       itemId: const Value(3)),
   OrdersCompanion(
+      orderCheck: const Value(false),
       orderNum: const Value(5),
       orderTime: Value(nowDateTime),
       itemId: const Value(1)),
   OrdersCompanion(
+      orderCheck: const Value(false),
       orderNum: const Value(5),
       orderTime: Value(nowDateTime),
       itemId: const Value(3)),
   OrdersCompanion(
+      orderCheck: const Value(false),
       orderNum: const Value(5),
       orderTime: Value(nowDateTime),
       itemId: const Value(1)),
   OrdersCompanion(
+      orderCheck: const Value(false),
       orderNum: const Value(5),
       orderTime: Value(nowDateTime),
       itemId: const Value(3)),
   OrdersCompanion(
+      orderCheck: const Value(false),
       orderNum: const Value(5),
       orderTime: Value(nowDateTime),
       itemId: const Value(1)),
   OrdersCompanion(
+      orderCheck: const Value(false),
       orderNum: const Value(5),
       orderTime: Value(nowDateTime),
       itemId: const Value(3)),
   OrdersCompanion(
+      orderCheck: const Value(false),
       orderNum: const Value(5),
       orderTime: Value(nowDateTime),
       itemId: const Value(1)),
   OrdersCompanion(
+      orderCheck: const Value(false),
       orderNum: const Value(5),
       orderTime: Value(nowDateTime),
       itemId: const Value(3)),
   OrdersCompanion(
+      orderCheck: const Value(false),
       orderNum: const Value(5),
       orderTime: Value(nowDateTime),
       itemId: const Value(1)),
   OrdersCompanion(
+      orderCheck: const Value(false),
       orderNum: const Value(5),
       orderTime: Value(nowDateTime),
       itemId: const Value(3)),
   OrdersCompanion(
+      orderCheck: const Value(false),
       orderNum: const Value(5),
       orderTime: Value(nowDateTime),
       itemId: const Value(1)),
   OrdersCompanion(
+      orderCheck: const Value(false),
       orderNum: const Value(5),
       orderTime: Value(nowDateTime),
       itemId: const Value(3)),
   OrdersCompanion(
+      orderCheck: const Value(false),
       orderNum: const Value(5),
       orderTime: Value(nowDateTime),
       itemId: const Value(1)),
   OrdersCompanion(
+      orderCheck: const Value(false),
       orderNum: const Value(5),
       orderTime: Value(nowDateTime),
       itemId: const Value(2))

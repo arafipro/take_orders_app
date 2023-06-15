@@ -30,7 +30,7 @@ class InitialSelectPage extends StatelessWidget {
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => OrderListPage(),
+                        builder: (context) => const OrderListPage(),
                       ),
                     );
                   },

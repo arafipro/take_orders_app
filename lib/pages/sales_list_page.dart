@@ -4,8 +4,7 @@ import "package:take_orders_app/repository/orders_with_item_repository.dart";
 
 class SalesListPage extends StatelessWidget {
   SalesListPage({super.key});
-  final orderRepo = OrdersWithItemRepository();
-
+  final owiRepo = OrdersWithItemRepository();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +12,7 @@ class SalesListPage extends StatelessWidget {
         child: SizedBox(
           width: double.infinity,
           child: StreamBuilder<List<OrdersWithItemData>>(
-            stream: orderRepo.watchAllOrdersWithItems(),
+            stream: owiRepo.watchAllOrdersWithItems(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(

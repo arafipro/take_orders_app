@@ -4,9 +4,16 @@ import "package:take_orders_app/db_utils/order_db.dart";
 import "package:take_orders_app/pages/top_page.dart";
 import "package:take_orders_app/repository/orders_with_item_repository.dart";
 
-class OrderListPage extends StatelessWidget {
-  OrderListPage({super.key});
-  final orderRepo = OrdersWithItemRepository();
+class OrderListPage extends StatefulWidget {
+  const OrderListPage({super.key});
+
+  @override
+  State<OrderListPage> createState() => _OrderListPageState();
+}
+
+class _OrderListPageState extends State<OrderListPage> {
+  final owiRepo = OrdersWithItemRepository();
+  bool isTextStrikeThrough = false;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +26,7 @@ class OrderListPage extends StatelessWidget {
         child: SizedBox(
           width: double.infinity,
           child: StreamBuilder<List<OrdersWithItemData>>(
-            stream: orderRepo.watchAllOrdersWithItems(),
+            stream: owiRepo.watchAllOrdersWithItems(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
@@ -67,6 +74,14 @@ class OrderListPage extends StatelessWidget {
                         rows: List<DataRow>.generate(
                           snapshot.data!.length,
                           (index) => DataRow(
+                            selected: snapshot.data![index].orderCheck!,
+                            onSelectChanged: (bool? value) {
+                              owiRepo.updateOrdersWithItems(
+                                snapshot.data![index].id,
+                                value!,
+                              );
+                              // debugPrint(snapshot.data![index].id.toString());
+                            },
                             cells: <DataCell>[
                               // DataCell(
                               //   Text(

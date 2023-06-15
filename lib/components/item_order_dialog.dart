@@ -77,6 +77,7 @@ class ItemOrderDialog extends StatelessWidget {
             if (_formKey.currentState!.validate()) {
               debugPrint(orderNumController.text);
               final order = OrdersCompanion(
+                orderCheck: const Value(false),
                 orderNum: Value(int.parse(orderNumController.text)),
                 orderTime: Value(DateTime.now()),
                 itemId: Value(itemId),
@@ -94,11 +95,12 @@ class ItemOrderDialog extends StatelessWidget {
               final navigator = Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => OrderListPage(),
+                  builder: (context) => const OrderListPage(),
                 ),
               );
               debugPrint(orderNumController.text);
               final order = OrdersCompanion(
+                orderCheck: const Value(false),
                 orderNum: Value(int.parse(orderNumController.text)),
                 orderTime: Value(DateTime.now()),
                 itemId: Value(itemId),
