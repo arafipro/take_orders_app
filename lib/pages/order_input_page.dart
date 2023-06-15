@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:take_orders_app/components/item_text_card.dart";
 import "package:take_orders_app/components/item_order_dialog.dart";
 import "package:take_orders_app/db_utils/order_db.dart";
+import "package:take_orders_app/pages/order_list_page.dart";
 import "package:take_orders_app/pages/top_page.dart";
 
 class OrderInputPage extends StatelessWidget {
@@ -34,6 +35,20 @@ class OrderInputPage extends StatelessWidget {
                 "Order Page",
                 style: TextStyle(
                   fontSize: 30,
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OrderListPage(),
+                      ),
+                    );
+                  },
+                  child: const Text("オーダー表へ"),
                 ),
               ),
               Expanded(

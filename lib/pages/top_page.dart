@@ -3,9 +3,9 @@ import "package:take_orders_app/pages/data_mgmt_page.dart";
 import "package:take_orders_app/pages/google_drive_upload_page.dart";
 import "package:take_orders_app/pages/initial_select_page.dart";
 import "package:take_orders_app/pages/item_input_page.dart";
-import "package:take_orders_app/pages/order_list_page.dart";
 import "package:take_orders_app/pages/order_input_page.dart";
 import "package:take_orders_app/pages/google_drive_ops_page.dart";
+import "package:take_orders_app/pages/sales_list_page.dart";
 import "package:take_orders_app/repository/items_repository.dart";
 
 class TopPage extends StatelessWidget {
@@ -89,7 +89,7 @@ class TopPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => OrderListPage(),
+                        builder: (context) => SalesListPage(),
                       ),
                     );
                   },

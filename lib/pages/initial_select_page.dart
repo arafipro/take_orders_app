@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:take_orders_app/components/initial_square_button.dart";
 import "package:take_orders_app/db_utils/select_items.dart";
 import "package:take_orders_app/pages/order_input_page.dart";
+import "package:take_orders_app/pages/order_list_page.dart";
 import "package:take_orders_app/pages/top_page.dart";
 
 class InitialSelectPage extends StatelessWidget {
@@ -20,6 +21,20 @@ class InitialSelectPage extends StatelessWidget {
                 "Initial Select Page",
                 style: TextStyle(
                   fontSize: 30,
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OrderListPage(),
+                      ),
+                    );
+                  },
+                  child: const Text("オーダー表へ"),
                 ),
               ),
               Expanded(
