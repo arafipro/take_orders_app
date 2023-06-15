@@ -28,7 +28,7 @@ class ItemInputPage extends StatelessWidget {
                         keyboardType: TextInputType.text,
                         maxLength: 20,
                         decoration: InputDecoration(
-                          hintText: "商品名",
+                          hintText: "商品名（カタカナ）",
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0),
                           ),
@@ -40,8 +40,12 @@ class ItemInputPage extends StatelessWidget {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "商品名を入力してください";
+                          } else if (!RegExp(r"^[\u30A0-\u30FF]+$")
+                              .hasMatch(value)) {
+                            return "カタカナで入力してください";
+                          } else {
+                            return null;
                           }
-                          return null;
                         },
                       ),
                     ),
@@ -101,7 +105,7 @@ class ItemInputPage extends StatelessWidget {
                 child: SizedBox(
                   width: double.infinity,
                   child: StreamBuilder<List<Item>>(
-                    stream: itemRepo.watchAllItems(),
+                    stream: itemRepo.watchAllAscItems(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(
@@ -114,12 +118,6 @@ class ItemInputPage extends StatelessWidget {
                           scrollDirection: Axis.vertical,
                           child: DataTable(
                             columns: const [
-                              DataColumn(
-                                label: Text(
-                                  "ID",
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
                               DataColumn(
                                 label: Text(
                                   "商品名",
@@ -142,11 +140,6 @@ class ItemInputPage extends StatelessWidget {
                               snapshot.data!.length,
                               (index) => DataRow(
                                 cells: <DataCell>[
-                                  DataCell(
-                                    Text(
-                                      "${snapshot.data![index].itemId}",
-                                    ),
-                                  ),
                                   DataCell(
                                     Text(
                                       "${snapshot.data![index].itemName}",
