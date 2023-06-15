@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:take_orders_app/pages/data_mgmt_page.dart";
+import "package:take_orders_app/pages/google_drive_upload_page.dart";
 import "package:take_orders_app/pages/initial_select_page.dart";
 import "package:take_orders_app/pages/item_input_page.dart";
 import "package:take_orders_app/pages/order_list_page.dart";
@@ -89,6 +90,20 @@ class TopPage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => OrderListPage(),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  child: const Text("売上データアップロード"),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const GoogleDriveUploadPage(),
                       ),
                     );
                   },

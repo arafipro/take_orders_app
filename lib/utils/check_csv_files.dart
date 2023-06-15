@@ -3,7 +3,7 @@ import "package:flutter/material.dart";
 import "package:path_provider/path_provider.dart";
 
 // CSVファイルの有無を確認
-Future<List<FileSystemEntity>> checkFiles() async {
+Future<List<FileSystemEntity>> checkCsvFiles() async {
   // 保存したテキストファイルのディレクトリ情報を取得
   final directory = await getApplicationDocumentsDirectory();
   // ディレクトリ内にある全てのファイル情報を取得

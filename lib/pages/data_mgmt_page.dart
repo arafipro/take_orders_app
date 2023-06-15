@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:take_orders_app/repository/orders_repository.dart";
-import "package:take_orders_app/utils/check_files.dart";
-import "package:take_orders_app/utils/create_csv.dart";
+import "package:take_orders_app/utils/check_csv_files.dart";
+import "package:take_orders_app/utils/create_csv_files.dart";
 
 class DataManagementPage extends StatelessWidget {
   DataManagementPage({super.key});
@@ -49,7 +49,7 @@ class DataManagementPage extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                       onPressed: () async {
-                        checkFiles();
+                        checkCsvFiles();
                       },
                       child: const Text("ファイル確認")),
                 ),

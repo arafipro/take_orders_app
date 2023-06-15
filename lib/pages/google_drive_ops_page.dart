@@ -6,6 +6,7 @@ import "package:googleapis_auth/googleapis_auth.dart";
 import "package:path_provider/path_provider.dart";
 import "package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart";
 import "package:path/path.dart";
+import "package:take_orders_app/utils/check_csv_files.dart";
 
 class GoogleDriveOpsPage extends StatefulWidget {
   const GoogleDriveOpsPage({super.key});
@@ -151,23 +152,7 @@ class _GoogleDriveOpsPageState extends State<GoogleDriveOpsPage> {
 
   /// ステップ②
   Future<void> _backUpToGoogleDrive() async {
-    final savedFileDirectory = await getApplicationDocumentsDirectory();
-    // ディレクトリ内にある全てのファイル情報を取得
-    List<FileSystemEntity> fileEntity =
-        Directory(savedFileDirectory.path).listSync();
-    // バックアップ対象であるCSVファイル以外をリストから削除
-    fileEntity.removeWhere((element) => !element.path.endsWith(".csv"));
-    for (var element in fileEntity) {
-      debugPrint(element.path);
-    }
-    if (fileEntity.isEmpty) {
-      debugPrint("バックアップ対象のファイル無し");
-      setState(() {
-        signInStatus = "バックアップ対象のファイル無し";
-      });
-      return;
-    }
-
+    List<FileSystemEntity> fileEntity = await checkCsvFiles();
     final signInResult = await _googleSignInMethod();
     if (!signInResult) {
       return;
