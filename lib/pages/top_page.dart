@@ -40,7 +40,7 @@ class TopPage extends StatelessWidget {
                             builder: (context) => const InitialSelectPage(),
                           ),
                         )
-                      : itemRepo.getAllItems().then(
+                      : itemRepo.getAllAscItems().then(
                           (allItems) {
                             Navigator.push(
                               context,

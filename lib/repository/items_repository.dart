@@ -13,6 +13,19 @@ class ItemsRepository {
     return await dbItem.select(dbItem.items).get();
   }
 
+  // MEMO 全検索昇順
+  Stream<List<Item>> watchAllAscItems() {
+    return (dbItem.select(dbItem.items)
+          ..orderBy([(t) => OrderingTerm.asc(t.itemName)]))
+        .watch();
+  }
+
+  Future<List<Item>> getAllAscItems() async {
+    return await (dbItem.select(dbItem.items)
+          ..orderBy([(t) => OrderingTerm.asc(t.itemName)]))
+        .get();
+  }
+
   // MEMO 一件登録
   Future<void> addItem(String itemName, int itemPrice) async {
     await dbItem.into(dbItem.items).insert(
