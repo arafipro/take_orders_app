@@ -11,8 +11,7 @@ class GoogleDriveOpsPage extends StatefulWidget {
   const GoogleDriveOpsPage({super.key});
 
   @override
-  State<GoogleDriveOpsPage> createState() =>
-      _GoogleDriveOpsPageState();
+  State<GoogleDriveOpsPage> createState() => _GoogleDriveOpsPageState();
 }
 
 class _GoogleDriveOpsPageState extends State<GoogleDriveOpsPage> {
@@ -30,7 +29,7 @@ class _GoogleDriveOpsPageState extends State<GoogleDriveOpsPage> {
         child: Column(
           children: <Widget>[
             const Text(
-              "Google Drive バックアップ・インポート",
+              "Google Drive 操作テスト（管理画面）",
               style: TextStyle(
                 fontSize: 18,
               ),
@@ -308,7 +307,7 @@ class _GoogleDriveOpsPageState extends State<GoogleDriveOpsPage> {
       // // ※firebase_auth、firebase_coreのインポートが必要
       // await FirebaseAuth.instance.signOut();
       setState(() {
-        signInStatus = "サインアウト中";
+        signInStatus = "サインアウト";
       });
     } catch (e) {
       debugPrint("サインアウトできず $e");

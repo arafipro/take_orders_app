@@ -97,7 +97,7 @@ class TopPage extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  child: const Text("データ管理"),
+                  child: const Text("データ操作（管理画面）"),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -112,13 +112,12 @@ class TopPage extends StatelessWidget {
                   ? SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        child: const Text("Google Drive 操作テスト"),
+                        child: const Text("Google Drive 操作テスト（管理画面）"),
                         onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  const GoogleDriveOpsPage(),
+                              builder: (context) => const GoogleDriveOpsPage(),
                             ),
                           );
                         },

@@ -14,9 +14,9 @@ class DataManagementPage extends StatelessWidget {
         child: Column(
           children: [
             const Text(
-              "データ関連",
+              "データ操作（管理画面）",
               style: TextStyle(
-                fontSize: 30,
+                fontSize: 18,
               ),
             ),
             Column(
