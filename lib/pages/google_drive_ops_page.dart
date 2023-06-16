@@ -255,9 +255,9 @@ class _GoogleDriveOpsPageState extends State<GoogleDriveOpsPage> {
       }
     } else {
       setState(() {
-        signInStatus = "インポートするファイル無し";
+        signInStatus = "Google Drive内にデータなし";
       });
-      debugPrint("インポートするファイル無し");
+      debugPrint("Google Drive内にデータなし");
     }
   }
 
