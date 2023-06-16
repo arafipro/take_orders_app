@@ -1,6 +1,7 @@
 import "dart:io";
 
 import "package:flutter/material.dart";
+import "package:flutter_dotenv/flutter_dotenv.dart";
 import "package:google_mobile_ads/google_mobile_ads.dart";
 
 // 参考サイト
@@ -15,8 +16,8 @@ class AdBanner extends StatelessWidget {
     // TEST_ANDROID_ID
     // TEST_IOS_ID
     adUnitId: Platform.isAndroid
-        ? "ca-app-pub-3940256099942544/6300978111"
-        : "ca-app-pub-3940256099942544/2934735716",
+        ? dotenv.get("ANDROID_TEST_ID")
+        : dotenv.get("IOS_TEST_ID"),
     size: AdSize.fullBanner,
     request: const AdRequest(),
     listener: BannerAdListener(
