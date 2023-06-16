@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:take_orders_app/components/full_wide_button.dart";
 import "package:take_orders_app/components/item_text_card.dart";
 import "package:take_orders_app/components/item_order_dialog.dart";
 import "package:take_orders_app/db_utils/order_db.dart";
@@ -37,19 +38,16 @@ class OrderInputPage extends StatelessWidget {
                   fontSize: 30,
                 ),
               ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const OrderListPage(),
-                      ),
-                    );
-                  },
-                  child: const Text("オーダー表へ"),
-                ),
+              FullWideButton(
+                onPressed: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const OrderListPage(),
+                    ),
+                  );
+                },
+                text: "オーダー表へ",
               ),
               Expanded(
                 child: GridView.builder(

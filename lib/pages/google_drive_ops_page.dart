@@ -6,6 +6,7 @@ import "package:googleapis_auth/googleapis_auth.dart";
 import "package:path_provider/path_provider.dart";
 import "package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart";
 import "package:path/path.dart";
+import "package:take_orders_app/components/full_wide_button.dart";
 import "package:take_orders_app/utils/check_csv_files.dart";
 
 class GoogleDriveOpsPage extends StatefulWidget {
@@ -35,55 +36,25 @@ class _GoogleDriveOpsPageState extends State<GoogleDriveOpsPage> {
                 fontSize: 18,
               ),
             ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => _getListFromGoogleDrive(),
-                child: const Text(
-                  "Googleドライブ内の全ファイル情報を取得",
-                  textAlign: TextAlign.center,
-                ),
-              ),
+            FullWideButton(
+              onPressed: () => _getListFromGoogleDrive(),
+              text: "Googleドライブ内の全ファイル情報を取得",
             ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => _backUpToGoogleDrive(),
-                child: const Text(
-                  "Googleドライブに全ファイルをバックアップ",
-                  textAlign: TextAlign.center,
-                ),
-              ),
+            FullWideButton(
+              onPressed: () => _backUpToGoogleDrive(),
+              text: "Googleドライブに全ファイルをバックアップ",
             ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => _importFromGoogleDrive(),
-                child: const Text(
-                  "Googleドライブから全ファイルをインポート",
-                  textAlign: TextAlign.center,
-                ),
-              ),
+            FullWideButton(
+              onPressed: () => _importFromGoogleDrive(),
+              text: "Googleドライブから全ファイルをインポート",
             ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => _deleteGoogleDriveFiles(),
-                child: const Text(
-                  "Googleドライブ内の全ファイルを削除",
-                  textAlign: TextAlign.center,
-                ),
-              ),
+            FullWideButton(
+              onPressed: () => _deleteGoogleDriveFiles(),
+              text: "Googleドライブ内の全ファイルを削除",
             ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => _signOutFromGoogle(),
-                child: const Text(
-                  "サインアウト",
-                  textAlign: TextAlign.center,
-                ),
-              ),
+            FullWideButton(
+              onPressed: () => _signOutFromGoogle(),
+              text: "サインアウト",
             ),
             const SizedBox(
               height: 30,

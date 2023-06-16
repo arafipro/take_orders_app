@@ -6,6 +6,7 @@ import "package:googleapis_auth/googleapis_auth.dart";
 import "package:intl/intl.dart";
 import "package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart";
 import "package:path/path.dart";
+import "package:take_orders_app/components/full_wide_button.dart";
 import "package:take_orders_app/utils/check_csv_files.dart";
 import "package:take_orders_app/utils/create_csv_files.dart";
 
@@ -36,15 +37,9 @@ class _GoogleDriveUploadPageState extends State<GoogleDriveUploadPage> {
                 fontSize: 18,
               ),
             ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => _upLoadToGoogleDrive(),
-                child: const Text(
-                  "売上データアップロード",
-                  textAlign: TextAlign.center,
-                ),
-              ),
+            FullWideButton(
+              onPressed: () => _upLoadToGoogleDrive(),
+              text: "売上データアップロード",
             ),
             const SizedBox(
               height: 30,
@@ -114,7 +109,7 @@ class _GoogleDriveUploadPageState extends State<GoogleDriveUploadPage> {
     // MEMO CSVファイルの有無をチェック
     List<FileSystemEntity> fileEntity = await checkCsvFiles();
     // MEMO CSVファイルがない場合はファイルを作成
-      orderWItemCreateCsv();
+    orderWItemCreateCsv();
     // MEMO サインインしているかチェック
     final signInResult = await _googleSignInMethod();
     if (!signInResult) {

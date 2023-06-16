@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:take_orders_app/components/full_wide_button.dart";
 import "package:take_orders_app/components/initial_square_button.dart";
 import "package:take_orders_app/db_utils/select_items.dart";
 import "package:take_orders_app/pages/order_input_page.dart";
@@ -23,19 +24,16 @@ class InitialSelectPage extends StatelessWidget {
                   fontSize: 30,
                 ),
               ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const OrderListPage(),
-                      ),
-                    );
-                  },
-                  child: const Text("オーダー表へ"),
-                ),
+              FullWideButton(
+                onPressed: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const OrderListPage(),
+                    ),
+                  );
+                },
+                text: "オーダー表へ",
               ),
               Expanded(
                 child: GridView.builder(
