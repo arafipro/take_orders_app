@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:take_orders_app/components/adbanner.dart";
 import "package:take_orders_app/components/full_wide_button.dart";
 import "package:take_orders_app/components/item_text_card.dart";
 import "package:take_orders_app/components/item_order_dialog.dart";
@@ -82,6 +83,7 @@ class OrderInputPage extends StatelessWidget {
                   },
                 ),
               ),
+              AdBanner(),
             ],
           ),
         ),

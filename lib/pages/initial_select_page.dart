@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:take_orders_app/components/adbanner.dart";
 import "package:take_orders_app/components/full_wide_button.dart";
 import "package:take_orders_app/components/initial_square_button.dart";
 import "package:take_orders_app/db_utils/select_items.dart";
@@ -66,6 +67,7 @@ class InitialSelectPage extends StatelessWidget {
                   },
                 ),
               ),
+              AdBanner(),
             ],
           ),
         ),

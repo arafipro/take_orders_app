@@ -6,6 +6,7 @@ import "package:googleapis_auth/googleapis_auth.dart";
 import "package:intl/intl.dart";
 import "package:extension_google_sign_in_as_googleapis_auth/extension_google_sign_in_as_googleapis_auth.dart";
 import "package:path/path.dart";
+import "package:take_orders_app/components/adbanner.dart";
 import "package:take_orders_app/components/full_wide_button.dart";
 import "package:take_orders_app/utils/check_csv_files.dart";
 import "package:take_orders_app/utils/create_csv_files.dart";
@@ -45,6 +46,8 @@ class _GoogleDriveUploadPageState extends State<GoogleDriveUploadPage> {
               height: 30,
             ),
             Text(signInStatus),
+            const Spacer(),
+            AdBanner()
           ],
         ),
       ),
