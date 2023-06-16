@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:firebase_core/firebase_core.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
 import "package:take_orders_app/db_utils/dummy_data.dart";
+import "package:take_orders_app/pages/top_dev_page.dart";
 import "package:take_orders_app/pages/top_page.dart";
 
 Future<void> main() async {
@@ -16,9 +17,12 @@ Future<void> main() async {
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
+  final bool isDevelopSelected = true;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -30,7 +34,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: TopPage(),
+      home: isDevelopSelected ? TopDevPage() : TopPage(),
     );
   }
 }
