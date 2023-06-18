@@ -55,9 +55,6 @@ class ItemOrderDialog extends StatelessWidget {
               borderRadius: BorderRadius.circular(5.0),
             ),
           ),
-          onChanged: (text) {
-            orderNumController.text = text;
-          },
           validator: (value) {
             // MEMO value!.isEmptyで未入力を警告
             if (value!.isEmpty) {
