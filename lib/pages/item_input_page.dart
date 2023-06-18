@@ -34,9 +34,6 @@ class ItemInputPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                         ),
-                        onChanged: (text) {
-                          itemNameController.text = text;
-                        },
                         // MEMO value!.isEmptyで未入力を警告
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -63,9 +60,6 @@ class ItemInputPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                           ),
-                          onChanged: (text) {
-                            itemPriceController.text = text;
-                          },
                           // MEMO value!.isEmptyで未入力を警告
                           // MEMO !RegExp(r"^\d+$").hasMatch(value)で数字以外を警告
                           validator: (value) {
