@@ -30,15 +30,15 @@
 
 | 項目   | カラム名 | データ型 | データタイプ | 制約                       |
 | ------ | -------- | -------- | ------------ | -------------------------- |
-| ID     | item_id  | integer  | 整数         | PRIMARY KEY, AUTOINCREMENT |
-| 商品名 | item     | text     | 文字列       | NOT NULL, UNIQUE           |
-| 価格   | price    | integer  | 整数         | NOT NULL                   |
+| ID     | itemId  | integer  | 整数         | PRIMARY KEY, AUTOINCREMENT |
+| 商品名 | itemName     | text     | 文字列       | NOT NULL, UNIQUE           |
+| 価格   | itemPrice    | integer  | 整数         | NOT NULL                   |
 
 ### 注文テーブル
 
 | 項目     | カラム名   | データ型 | データタイプ | 制約                       |
 | -------- | ---------- | -------- | ------------ | -------------------------- |
 | ID       | id         | integer  | 整数         | PRIMARY KEY, AUTOINCREMENT |
-| 商品 ID  | item_id    | integer  | 整数         | NOT NULL, UNIQUE           |
-| 注文数   | order_num  | integer  | 整数         | NOT NULL                   |
-| 注文日時 | order_time | text     | 文字列       | NOT NULL                   |
+| 商品 ID  | itemId    | integer  | 整数         | NOT NULL, UNIQUE           |
+| 注文数   | orderNum  | integer  | 整数         | NOT NULL                   |
+| 注文日時 | orderTime | text     | 文字列       | NOT NULL                   |
