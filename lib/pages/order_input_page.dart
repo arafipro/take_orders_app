@@ -1,11 +1,12 @@
 import "package:flutter/material.dart";
 import "package:take_orders_app/components/adbanner.dart";
+import "package:take_orders_app/components/custom_bottom_app_bar.dart";
+import "package:take_orders_app/components/custom_floating_action_button.dart";
 import "package:take_orders_app/components/full_wide_button.dart";
 import "package:take_orders_app/components/item_text_card.dart";
 import "package:take_orders_app/components/item_order_dialog.dart";
 import "package:take_orders_app/db_utils/order_db.dart";
 import "package:take_orders_app/pages/order_list_page.dart";
-import "package:take_orders_app/pages/top_page.dart";
 
 class OrderInputPage extends StatelessWidget {
   /*　引数の詳細
@@ -87,41 +88,9 @@ class OrderInputPage extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton: GestureDetector(
-          child: FloatingActionButton.extended(
-            label: const Text("営業終了"),
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: const Text("終了するときは長押ししてください"),
-                  // MEMO 1秒で閉じる
-                  duration: const Duration(seconds: 1),
-                  action: SnackBarAction(
-                    label: "OK",
-                    onPressed: () {
-                      debugPrint("タップ");
-                    },
-                  ),
-                ),
-              );
-            },
-          ),
-          onLongPress: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => TopPage(),
-              ),
-            );
-          },
-        ),
+        floatingActionButton: const CustomFloatingActionButton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
-        bottomNavigationBar: BottomAppBar(
-          child: Container(
-            alignment: Alignment.centerLeft,
-            child: const Text("終了するときは長押ししてください"),
-          ),
-        ),
+        bottomNavigationBar: const CustomBottomAppBar(),
       ),
     );
   }
