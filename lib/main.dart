@@ -1,11 +1,4 @@
-import "package:flutter/material.dart";
-import "package:firebase_core/firebase_core.dart";
-import "package:flutter_dotenv/flutter_dotenv.dart";
-import "package:flutter_localizations/flutter_localizations.dart";
-import "package:google_mobile_ads/google_mobile_ads.dart";
-// import "package:take_orders_app/db_utils/dummy_data.dart";
-import "package:take_orders_app/pages/top_dev_page.dart";
-import "package:take_orders_app/pages/top_page.dart";
+import "package:take_orders_app/constants/imports.dart";
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

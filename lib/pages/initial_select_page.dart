@@ -1,12 +1,4 @@
-import "package:flutter/material.dart";
-import "package:take_orders_app/components/adbanner.dart";
-import "package:take_orders_app/components/custom_bottom_app_bar.dart";
-import "package:take_orders_app/components/custom_floating_action_button.dart";
-import "package:take_orders_app/components/full_wide_button.dart";
-import "package:take_orders_app/components/initial_square_button.dart";
-import "package:take_orders_app/db_utils/select_items.dart";
-import "package:take_orders_app/pages/order_input_page.dart";
-import "package:take_orders_app/pages/order_list_page.dart";
+import "package:take_orders_app/constants/imports.dart";
 
 class InitialSelectPage extends StatelessWidget {
   const InitialSelectPage({super.key});

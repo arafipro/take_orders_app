@@ -1,8 +1,4 @@
-import "dart:io";
-
-import "package:flutter/material.dart";
-import "package:flutter_dotenv/flutter_dotenv.dart";
-import "package:google_mobile_ads/google_mobile_ads.dart";
+import "package:take_orders_app/constants/imports.dart";
 
 // 参考サイト
 // https://uedive.net/2021/5410/flutter2-gad/

@@ -1,8 +1,5 @@
+import "package:take_orders_app/constants/imports.dart";
 import "package:drift/drift.dart";
-import "package:flutter/material.dart";
-import "package:take_orders_app/db_utils/order_db.dart";
-import "package:take_orders_app/repository/items_repository.dart";
-import "package:take_orders_app/repository/orders_repository.dart";
 
 // MEMO ダミー商品データ
 const dummyItems = [

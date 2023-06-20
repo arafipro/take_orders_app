@@ -1,5 +1,6 @@
+import "package:take_orders_app/constants/imports.dart";
+
 import "package:drift/drift.dart";
-import "package:take_orders_app/db_utils/order_db.dart";
 
 final dbOrderWItem = OrderDatabase();
 

@@ -1,13 +1,4 @@
-import "package:flutter/material.dart";
-import "package:take_orders_app/components/full_wide_button.dart";
-import "package:take_orders_app/pages/data_mgmt_page.dart";
-import "package:take_orders_app/pages/google_drive_upload_page.dart";
-import "package:take_orders_app/pages/initial_select_page.dart";
-import "package:take_orders_app/pages/item_input_page.dart";
-import "package:take_orders_app/pages/order_input_page.dart";
-import "package:take_orders_app/pages/google_drive_ops_page.dart";
-import "package:take_orders_app/pages/sales_list_page.dart";
-import "package:take_orders_app/repository/items_repository.dart";
+import "package:take_orders_app/constants/imports.dart";
 
 class TopDevPage extends StatelessWidget {
   TopDevPage({super.key});

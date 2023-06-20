@@ -1,8 +1,4 @@
-import "package:flutter/material.dart";
-import "package:take_orders_app/components/full_wide_button.dart";
-import "package:take_orders_app/repository/orders_repository.dart";
-import "package:take_orders_app/utils/check_csv_files.dart";
-import "package:take_orders_app/utils/create_csv_files.dart";
+import "package:take_orders_app/constants/imports.dart";
 
 class DataManagementPage extends StatelessWidget {
   DataManagementPage({super.key});

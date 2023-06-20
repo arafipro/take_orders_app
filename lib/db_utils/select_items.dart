@@ -1,6 +1,4 @@
-import "package:flutter/material.dart";
-import "package:take_orders_app/db_utils/order_db.dart";
-import "package:take_orders_app/repository/items_repository.dart";
+import "package:take_orders_app/constants/imports.dart";
 
 // MEMO 五十音順配列（ひらがな、カタカナ併用）
 const gojyuon = [

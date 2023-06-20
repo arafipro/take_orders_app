@@ -1,7 +1,4 @@
-import "package:flutter/material.dart";
-import "package:take_orders_app/components/adbanner.dart";
-import "package:take_orders_app/db_utils/order_db.dart";
-import "package:take_orders_app/repository/orders_with_item_repository.dart";
+import "package:take_orders_app/constants/imports.dart";
 
 class SalesListPage extends StatelessWidget {
   SalesListPage({super.key});

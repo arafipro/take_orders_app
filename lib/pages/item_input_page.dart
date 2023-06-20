@@ -1,7 +1,4 @@
-import "package:flutter/material.dart";
-import "package:take_orders_app/components/adbanner.dart";
-import "package:take_orders_app/db_utils/order_db.dart";
-import "package:take_orders_app/repository/items_repository.dart";
+import "package:take_orders_app/constants/imports.dart";
 
 class ItemInputPage extends StatelessWidget {
   ItemInputPage({super.key});
