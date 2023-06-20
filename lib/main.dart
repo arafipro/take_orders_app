@@ -35,9 +35,6 @@ class MainApp extends StatelessWidget {
       supportedLocales: const [
         Locale("ja", "JP"),
       ],
-      theme: ThemeData(
-        useMaterial3: true,
-      ),
       home: isDevelopSelected ? TopDevPage() : TopPage(),
     );
   }
