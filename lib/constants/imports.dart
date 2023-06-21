@@ -30,6 +30,7 @@ export "package:take_orders_app/components/item_order_dialog.dart";
 export "package:take_orders_app/components/height_wide_button.dart";
 
 // constants
+export "package:take_orders_app/constants/colors.dart";
 
 // db_utils
 export "package:take_orders_app/db_utils/order_db.dart";
