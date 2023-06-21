@@ -27,10 +27,15 @@ class OrderInputPage extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
-              const Text(
-                "商品一覧",
-                style: TextStyle(
-                  fontSize: 18,
+              const Padding(
+                padding: EdgeInsets.only(
+                  top: 8.0,
+                ),
+                child: Text(
+                  "商品一覧",
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
                 ),
               ),
               Padding(

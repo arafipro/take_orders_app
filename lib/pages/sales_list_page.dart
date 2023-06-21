@@ -10,10 +10,15 @@ class SalesListPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const Text(
-              "売上一覧",
-              style: TextStyle(
-                fontSize: 18,
+            const Padding(
+              padding: EdgeInsets.only(
+                top: 8.0,
+              ),
+              child: Text(
+                "売上一覧",
+                style: TextStyle(
+                  fontSize: 18,
+                ),
               ),
             ),
             Expanded(
