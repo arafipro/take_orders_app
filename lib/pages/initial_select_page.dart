@@ -9,6 +9,7 @@ class InitialSelectPage extends StatelessWidget {
       // MEMO 戻るボタンの動作を無効化する
       onWillPop: () async => false,
       child: Scaffold(
+        backgroundColor: backgroundColor,
         body: SafeArea(
           child: Column(
             children: [

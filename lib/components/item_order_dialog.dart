@@ -29,6 +29,7 @@ class ItemOrderDialog extends StatelessWidget {
     }
 
     return AlertDialog(
+      backgroundColor: backgroundColor,
       title: Text(
         title,
       ),
@@ -52,6 +53,17 @@ class ItemOrderDialog extends StatelessWidget {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5.0),
             ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              borderSide: const BorderSide(
+                color: primaryColor,
+                width: 3.0,
+              ),
+            ),
+            labelText: "注文数",
+            labelStyle: const TextStyle(
+              color: primaryColor,
+            ),
           ),
           validator: (value) {
             // MEMO value!.isEmptyで未入力を警告
@@ -68,6 +80,11 @@ class ItemOrderDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(
+              primaryColor,
+            ),
+          ),
           onPressed: () async {
             if (_formKey.currentState!.validate()) {
               debugPrint(orderNumController.text);

@@ -33,6 +33,17 @@ class ItemInputPage extends StatelessWidget {
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0),
                                 ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  borderSide: const BorderSide(
+                                    color: primaryColor,
+                                    width: 3.0,
+                                  ),
+                                ),
+                                labelText: "商品名（カタカナ）",
+                                labelStyle: const TextStyle(
+                                  color: primaryColor,
+                                ),
                               ),
                               // MEMO value!.isEmptyで未入力を警告
                               validator: (value) {
@@ -59,6 +70,17 @@ class ItemInputPage extends StatelessWidget {
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(5.0),
                                   ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    borderSide: const BorderSide(
+                                      color: primaryColor,
+                                      width: 3.0,
+                                    ),
+                                  ),
+                                  labelText: "価格",
+                                  labelStyle: const TextStyle(
+                                    color: primaryColor,
+                                  ),
                                 ),
                                 // MEMO value!.isEmptyで未入力を警告
                                 // MEMO !RegExp(r"^\d+$").hasMatch(value)で数字以外を警告
@@ -80,7 +102,7 @@ class ItemInputPage extends StatelessWidget {
                     ),
                     SizedBox(
                       width: double.infinity,
-                      child: ElevatedButton(
+                      child: FullWideButton(
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             await itemRepo.addItem(
@@ -92,9 +114,7 @@ class ItemInputPage extends StatelessWidget {
                             itemPriceController.text = "";
                           }
                         },
-                        child: const Text(
-                          "登録",
-                        ),
+                        text: "登録",
                       ),
                     ),
                     Expanded(

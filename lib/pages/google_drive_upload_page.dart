@@ -22,6 +22,7 @@ class _GoogleDriveUploadPageState extends State<GoogleDriveUploadPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
       body: SafeArea(
         child: Column(
           children: <Widget>[

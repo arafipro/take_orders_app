@@ -1,4 +1,4 @@
-import "package:flutter/material.dart";
+import "package:take_orders_app/constants/imports.dart";
 
 class HeightWideButton extends StatelessWidget {
   final String text;
@@ -19,10 +19,18 @@ class HeightWideButton extends StatelessWidget {
         height: 100,
         child: ElevatedButton(
           onPressed: onPressed,
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(
+              primaryColor,
+            ),
+          ),
           child: Text(
             text,
             textAlign: TextAlign.center,
             style: const TextStyle(
+              letterSpacing: 2.0,
+              fontWeight: FontWeight.w600,
+              color: textColor,
               fontSize: 24,
             ),
           ),

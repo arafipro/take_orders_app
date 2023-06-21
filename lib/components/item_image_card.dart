@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:take_orders_app/constants/imports.dart";
 
 class ItemImageCard extends StatelessWidget {
   final String itemName;
@@ -35,13 +36,13 @@ class ItemImageCard extends StatelessWidget {
               Text(
                 itemName,
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: textColor,
                 ),
               ),
               Text(
                 "¥${itemPrice.toString()}",
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: textColor,
                 ),
               ),
             ],

@@ -20,6 +20,7 @@ class _OrderListPageState extends State<OrderListPage> {
     String today = formatter.format(now);
 
     return Scaffold(
+        backgroundColor: backgroundColor,
         body: SafeArea(
           child: Column(
             children: [

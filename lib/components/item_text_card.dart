@@ -1,4 +1,4 @@
-import "package:flutter/material.dart";
+import "package:take_orders_app/constants/imports.dart";
 
 class ItemTextCard extends StatelessWidget {
   final String itemName;
@@ -18,7 +18,7 @@ class ItemTextCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.blue[100],
+          color: secondaryColor,
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Padding(

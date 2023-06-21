@@ -23,6 +23,7 @@ class OrderInputPage extends StatelessWidget {
       // MEMO 戻るボタンの動作を無効化する
       onWillPop: () async => isBackButtonEffect,
       child: Scaffold(
+        backgroundColor: backgroundColor,
         body: SafeArea(
           child: Column(
             children: [

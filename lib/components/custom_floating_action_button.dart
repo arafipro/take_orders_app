@@ -7,7 +7,14 @@ class CustomFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: FloatingActionButton.extended(
-        label: const Text("営業終了"),
+        backgroundColor: primaryColor,
+        label: const Text(
+          "営業終了",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            letterSpacing: 3.0,
+          ),
+        ),
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -15,6 +22,7 @@ class CustomFloatingActionButton extends StatelessWidget {
               // MEMO 1秒で閉じる
               duration: const Duration(seconds: 1),
               action: SnackBarAction(
+                textColor: textColor,
                 label: "OK",
                 onPressed: () {
                   debugPrint("タップ");
