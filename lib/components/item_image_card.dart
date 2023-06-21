@@ -1,4 +1,3 @@
-import "package:flutter/material.dart";
 import "package:take_orders_app/constants/imports.dart";
 
 class ItemImageCard extends StatelessWidget {

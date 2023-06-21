@@ -14,9 +14,27 @@ class OrdersWithItemRepository {
     return await dbOrderWItem.select(dbOrderWItem.ordersWithItem).get();
   }
 
+// MEMO 日付別検索
+  Stream<List<OrdersWithItemData>> watchAllOrdersWithItemsFromDate(
+      DateTime dateTime) {
+    return (dbOrderWItem.select(dbOrderWItem.ordersWithItem)
+          ..where(
+            (tbl) => tbl.orderTime.date.equals(checkToday()),
+          ))
+        .watch();
+  }
+
+  Future<List<OrdersWithItemData>> getAllOrdersWithItemsFromDate(
+      DateTime dateTime) async {
+    return await (dbOrderWItem.select(dbOrderWItem.ordersWithItem)
+          ..where(
+            (tbl) => tbl.orderTime.date.equals(checkToday()),
+          ))
+        .get();
+  }
+
   // MEMO 更新
-  Future<int> updateOrdersWithItems(
-      int id, bool orderCheck) {
+  Future<int> updateOrdersWithItems(int id, bool orderCheck) {
     return (dbOrderWItem.update(dbOrderWItem.orders)
           ..where(
             (tbl) => tbl.id.equals(id),

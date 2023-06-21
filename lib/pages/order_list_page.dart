@@ -1,7 +1,5 @@
 import "package:take_orders_app/constants/imports.dart";
 
-import "package:intl/intl.dart";
-
 class OrderListPage extends StatefulWidget {
   const OrderListPage({super.key});
 
@@ -15,21 +13,19 @@ class _OrderListPageState extends State<OrderListPage> {
 
   @override
   Widget build(BuildContext context) {
-    DateTime now = DateTime.now();
-    DateFormat formatter = DateFormat("yyyy/MM/dd");
-    String today = formatter.format(now);
-
     return Scaffold(
         backgroundColor: backgroundColor,
         body: SafeArea(
           child: Column(
             children: [
-              Text("$today - オーダー一覧"),
+              Text("${checkToday()} - 注文一覧"),
               Expanded(
                 child: SizedBox(
                   width: double.infinity,
                   child: StreamBuilder<List<OrdersWithItemData>>(
-                    stream: owiRepo.watchAllOrdersWithItems(),
+                    stream: owiRepo.watchAllOrdersWithItemsFromDate(
+                      DateTime.now(),
+                    ),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(
