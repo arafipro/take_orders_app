@@ -19,15 +19,15 @@ class TopPage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    HeightWideButton(
-                      text: "注文一覧（五十音順）",
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const InitialSelectPage(),
-                        ),
-                      ),
-                    ),
+                    // HeightWideButton(
+                    //   text: "注文一覧（五十音順）",
+                    //   onPressed: () => Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => const InitialSelectPage(),
+                    //     ),
+                    //   ),
+                    // ),
                     HeightWideButton(
                       text: "注文一覧（全商品）",
                       onPressed: () => itemRepo.getAllAscItems().then(

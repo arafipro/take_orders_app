@@ -14,7 +14,7 @@ Future<void> main() async {
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
-  final bool isDevelopSelected = true;
+  final bool isDevelopSelected = false;
 
   @override
   Widget build(BuildContext context) {
