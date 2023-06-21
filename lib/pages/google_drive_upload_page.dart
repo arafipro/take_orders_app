@@ -25,21 +25,28 @@ class _GoogleDriveUploadPageState extends State<GoogleDriveUploadPage> {
       backgroundColor: backgroundColor,
       body: SafeArea(
         child: Column(
-          children: <Widget>[
-            const Text(
-              "売上一覧データアップロード",
-              style: TextStyle(
-                fontSize: 18,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: <Widget>[
+                  const Text(
+                    "売上データアップロード",
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                  FullWideButton(
+                    onPressed: () => _upLoadToGoogleDrive(),
+                    text: "売上データアップロード",
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Text(signInStatus),
+                ],
               ),
             ),
-            FullWideButton(
-              onPressed: () => _upLoadToGoogleDrive(),
-              text: "売上データアップロード",
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Text(signInStatus),
             const Spacer(),
             AdBanner()
           ],

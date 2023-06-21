@@ -12,87 +12,90 @@ class TopDevPage extends StatelessWidget {
       onWillPop: () async => false,
       child: Scaffold(
         body: SafeArea(
-          child: Column(
-            children: [
-              FullWideButton(
-                text: "注文一覧（全商品）",
-                onPressed: () => itemRepo.getAllAscItems().then(
-                  (allItems) {
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                FullWideButton(
+                  text: "注文一覧（全商品）",
+                  onPressed: () => itemRepo.getAllAscItems().then(
+                    (allItems) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              OrderInputPage(searchData: allItems),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                FullWideButton(
+                  text: "注文一覧（五十音順）",
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const InitialSelectPage(),
+                    ),
+                  ),
+                ),
+                FullWideButton(
+                  text: "商品登録",
+                  onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            OrderInputPage(searchData: allItems),
+                        builder: (context) => ItemInputPage(),
                       ),
                     );
                   },
                 ),
-              ),
-              FullWideButton(
-                text: "注文一覧（五十音順）",
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const InitialSelectPage(),
-                  ),
+                FullWideButton(
+                  text: "売上一覧",
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SalesListPage(),
+                      ),
+                    );
+                  },
                 ),
-              ),
-              FullWideButton(
-                text: "商品登録",
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ItemInputPage(),
-                    ),
-                  );
-                },
-              ),
-              FullWideButton(
-                text: "売上一覧",
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SalesListPage(),
-                    ),
-                  );
-                },
-              ),
-              FullWideButton(
-                text: "売上データアップロード",
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const GoogleDriveUploadPage(),
-                    ),
-                  );
-                },
-              ),
-              FullWideButton(
-                text: "データ操作（管理画面）",
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DataManagementPage(),
-                    ),
-                  );
-                },
-              ),
-              FullWideButton(
-                text: "Google Drive 操作テスト（管理画面）",
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const GoogleDriveOpsPage(),
-                    ),
-                  );
-                },
-              ),
-            ],
+                FullWideButton(
+                  text: "売上データアップロード",
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const GoogleDriveUploadPage(),
+                      ),
+                    );
+                  },
+                ),
+                FullWideButton(
+                  text: "データ操作（管理画面）",
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DataManagementPage(),
+                      ),
+                    );
+                  },
+                ),
+                FullWideButton(
+                  text: "Google Drive 操作テスト（管理画面）",
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const GoogleDriveOpsPage(),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

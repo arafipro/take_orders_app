@@ -10,6 +10,12 @@ class SalesListPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
+            const Text(
+              "売上一覧",
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
             Expanded(
               child: SizedBox(
                 width: double.infinity,
@@ -29,7 +35,7 @@ class SalesListPage extends StatelessWidget {
                           columns: const [
                             DataColumn(
                               label: Text(
-                                "受注時間",
+                                "受注日時",
                                 textAlign: TextAlign.center,
                               ),
                             ),

@@ -28,21 +28,26 @@ class OrderInputPage extends StatelessWidget {
           child: Column(
             children: [
               const Text(
-                "Order Page",
+                "商品一覧",
                 style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 18,
                 ),
               ),
-              FullWideButton(
-                onPressed: () async {
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const OrderListPage(),
-                    ),
-                  );
-                },
-                text: "オーダー表へ",
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                ),
+                child: FullWideButton(
+                  onPressed: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const OrderListPage(),
+                      ),
+                    );
+                  },
+                  text: "オーダー表へ",
+                ),
               ),
               Expanded(
                 child: GridView.builder(

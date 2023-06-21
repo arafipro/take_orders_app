@@ -22,39 +22,42 @@ class _GoogleDriveOpsPageState extends State<GoogleDriveOpsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            const Text(
-              "Google Drive 操作テスト（管理画面）",
-              style: TextStyle(
-                fontSize: 18,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: <Widget>[
+              const Text(
+                "Google Drive 操作テスト（管理画面）",
+                style: TextStyle(
+                  fontSize: 18,
+                ),
               ),
-            ),
-            FullWideButton(
-              onPressed: () => _getListFromGoogleDrive(),
-              text: "Googleドライブ内の全ファイル情報を取得",
-            ),
-            FullWideButton(
-              onPressed: () => _backUpToGoogleDrive(),
-              text: "Googleドライブに全ファイルをバックアップ",
-            ),
-            FullWideButton(
-              onPressed: () => _importFromGoogleDrive(),
-              text: "Googleドライブから全ファイルをインポート",
-            ),
-            FullWideButton(
-              onPressed: () => _deleteGoogleDriveFiles(),
-              text: "Googleドライブ内の全ファイルを削除",
-            ),
-            FullWideButton(
-              onPressed: () => _signOutFromGoogle(),
-              text: "サインアウト",
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Text(signInStatus),
-          ],
+              FullWideButton(
+                onPressed: () => _getListFromGoogleDrive(),
+                text: "全ファイル情報を取得",
+              ),
+              FullWideButton(
+                onPressed: () => _backUpToGoogleDrive(),
+                text: "全ファイルをバックアップ",
+              ),
+              FullWideButton(
+                onPressed: () => _importFromGoogleDrive(),
+                text: "全ファイルをインポート",
+              ),
+              FullWideButton(
+                onPressed: () => _deleteGoogleDriveFiles(),
+                text: "全ファイルを削除",
+              ),
+              FullWideButton(
+                onPressed: () => _signOutFromGoogle(),
+                text: "サインアウト",
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Text(signInStatus),
+            ],
+          ),
         ),
       ),
     );

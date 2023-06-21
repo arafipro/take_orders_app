@@ -18,7 +18,12 @@ class _OrderListPageState extends State<OrderListPage> {
         body: SafeArea(
           child: Column(
             children: [
-              Text("${checkToday()} - 注文一覧"),
+              Text(
+                "${checkToday()} 注文一覧",
+                style: const TextStyle(
+                  fontSize: 18,
+                ),
+              ),
               Expanded(
                 child: SizedBox(
                   width: double.infinity,
