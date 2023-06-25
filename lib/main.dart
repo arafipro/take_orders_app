@@ -1,9 +1,12 @@
 import "package:take_orders_app/constants/imports.dart";
+import "package:take_orders_app/firebase_options.dart";
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await dotenv.load(fileName: ".env");
   // MEMO 商品データがない場合、ダミー商品データを登録
   // await dummyItem();
